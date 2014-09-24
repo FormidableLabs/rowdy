@@ -23,8 +23,7 @@
     "test"
   ],
   "author": "Ryan Roemer <ryan.roemer@formidablelabs.com>",
-  "license": "private",
-  "private": true,
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/FormidableLabs/rowdy/issues"
   },
