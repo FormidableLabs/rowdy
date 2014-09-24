@@ -22,7 +22,7 @@ gulp.task("jshint", function () {
     .src([
       "*.js",
       "lib/**/*.js",
-      "test/**/*.js"
+      "examples/**/*.js"
     ])
     .pipe(jshint(_jsonCfg("./_dev/.jshintrc-backend.json")))
     .pipe(jshint.reporter("default"))

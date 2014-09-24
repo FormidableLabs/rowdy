@@ -5,6 +5,9 @@ var sel = require("../../lib/selenium");
 var config = require("../../lib/config");
 var client = require("../../lib/browser").getClient();
 
+// Globals
+var ELEM_WAIT = 200;
+
 // State
 var allPassed = true;
 
@@ -23,6 +26,7 @@ before(function (done) {
 before(function (done) {
   client
     .init(config.get().desiredCapabilities)
+    .setImplicitWaitTimeout(ELEM_WAIT)
     .nodeify(done);
 });
 
