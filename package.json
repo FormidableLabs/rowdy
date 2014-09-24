@@ -31,6 +31,6 @@
     "url": "https://github.com/FormidableLabs/rowdy/issues"
   },
   "scripts": {
-    "test": "mocha examples/mocha"
+    "test": "mocha --opts examples/mocha/mocha.opts examples/mocha/"
   }
 }

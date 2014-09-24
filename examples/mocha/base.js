@@ -14,6 +14,8 @@ before(function (done) {
     return done();
   }
 
+  // Start selenium and wait until ready.
+  sel.start();
   sel.ready(done);
 });
 
