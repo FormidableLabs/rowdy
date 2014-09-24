@@ -1,0 +1,14 @@
+\.git
+\.hg
+\.swp
+
+\.DS_Store
+\.project
+bower_components
+node_modules
+npm-debug\.log
+chromedriver\.log
+selenium-debug\.log
+
+local
+report

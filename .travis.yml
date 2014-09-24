@@ -1,0 +1,15 @@
+language:
+  - node_js
+
+node_js:
+  - 0.10
+
+env:
+  global:
+    - SEL_LOGGER=true
+  matrix:
+    - SAUCE=chrome-win7
+
+script:
+  - ./node_modules/.bin/gulp check
+  #- npm test

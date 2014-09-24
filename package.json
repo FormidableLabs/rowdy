@@ -1,0 +1,35 @@
+{
+  "name": "rowdy",
+  "version": "0.0.1",
+  "description": "WD.js configuration wrapper.",
+  "dependencies": {
+    "chai": "1.9.1",
+    "colors": "0.6.2",
+    "mocha": "1.21.4",
+    "phantomjs": "1.9.9",
+    "selenium-standalone": "2.43.1-2.9.0-1",
+    "wd": "0.3.8"
+  },
+  "devDependencies": {
+    "gulp": "3.8.7",
+    "gulp-jshint": "1.8.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FormidableLabs/rowdy"
+  },
+  "keywords": [
+    "functional",
+    "test"
+  ],
+  "author": "Ryan Roemer <ryan.roemer@formidablelabs.com>",
+  "license": "private",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/FormidableLabs/rowdy/issues"
+  },
+  "scripts": {
+    "test": "mocha",
+    "test-all": "SEL_BROWSER_NAME='phantomjs' mocha && SEL_BROWSER_NAME='firefox' mocha && SEL_BROWSER_NAME='chrome' mocha && SEL_BROWSER_NAME='safari' mocha"
+  }
+}
