@@ -1,9 +1,9 @@
 /**
  * Global setup / teardown.
  */
-var sel = require("../lib/selenium");
-var config = require("../lib/config");
-var client = require("../lib/browser").getClient();
+var sel = require("../../lib/selenium");
+var config = require("../../lib/config");
+var client = require("../../lib/browser").getClient();
 
 // State
 var allPassed = true;
