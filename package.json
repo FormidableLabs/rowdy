@@ -2,13 +2,16 @@
   "name": "rowdy",
   "version": "0.0.1",
   "description": "WD.js configuration wrapper.",
+  "main": "index.js",
   "dependencies": {
     "chai": "1.9.1",
     "colors": "0.6.2",
     "mocha": "1.21.4",
-    "phantomjs": "1.9.9",
-    "selenium-standalone": "2.43.1-2.9.0-1",
-    "wd": "0.3.8"
+    "phantomjs": "1.9.9"
+  },
+  "peerDependencies": {
+    "selenium-standalone": "*",
+    "wd": "*"
   },
   "devDependencies": {
     "gulp": "3.8.7",
