@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "colors": "0.6.2",
-    "lodash": "2.4.1",
+    "lodash": "2.4.1"
   },
   "peerDependencies": {
     "selenium-standalone": "*",
@@ -32,6 +32,6 @@
     "url": "https://github.com/FormidableLabs/rowdy/issues"
   },
   "scripts": {
-    "test": "mocha --opts examples/mocha/mocha.opts examples/mocha/"
+    "test": "cd examples/mocha && mocha"
   }
 }
