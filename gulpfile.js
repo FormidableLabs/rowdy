@@ -22,6 +22,7 @@ gulp.task("jshint", function () {
     .src([
       "*.js",
       "lib/**/*.js",
+      "adapters/**/*.js",
       "examples/**/*.js"
     ])
     .pipe(jshint(_jsonCfg("./_dev/.jshintrc-backend.json")))

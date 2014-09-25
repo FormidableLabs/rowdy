@@ -9,6 +9,7 @@ node_modules
 npm-debug\.log
 chromedriver\.log
 selenium-debug\.log
+phantomjsdriver\.log
 
 local
 report
