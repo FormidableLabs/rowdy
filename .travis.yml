@@ -6,10 +6,12 @@ node_js:
 
 env:
   global:
-    - SEL_LOGGER=true
+    - ROWDY_OPTIONS=\"{ "clientLogger": true }'
+    - secure: RNc5J2RK3sBqx9UoQSORuqm57lmE3nGWsIyb3Yr9JG4PYcwBidFlZpT/pk5nvFNKfRjSe9hfXAeJRYRD8QqenG3YASDH278hdW+g1QyBJeorEZGwtDfqxtKfiif5yaULaYF7LjhAzIMlyqiz9NbbM7gwiwtlBkWRGenrwHJ2U9o=
+    - secure: W5dyVnpoWwRIDkgkGza4VLnsghYGYdbP3U0sZY5Olp2Enx/AXijgYlmILbnef7lGV/lp3f0GT2JIYdiK0ESkrsgpltdu8YedAfB1Ld8vcQbt5KU/AQic1TQFwDKviVG3Wdqhyndd5kfP4tanGLjpeixdhYFAbApr7zjpCD1DTEE=
   matrix:
-    - SAUCE=chrome-win7
+    - ROWDY_SETTINGS="sauceLabs.chrome-win7"
 
 script:
   - ./node_modules/.bin/gulp check
-  #- npm test
+  - npm test

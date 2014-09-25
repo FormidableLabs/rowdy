@@ -35,6 +35,18 @@ module.exports = {
   after: function () {
     var rowdy = require("../index");
     after(function (done) {
+      // Handle SauceLabs accumulation.
+      if (rowdy.setting.isSauceLabs) {
+        return rowdy.client
+          .sauceJobStatus(allPassed)
+          .nodeify(done);
+      }
+
+      // Default.
+      done();
+    });
+
+    after(function (done) {
       rowdy.teardown(done);
     });
   }

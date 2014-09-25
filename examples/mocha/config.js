@@ -99,10 +99,51 @@ module.exports = {
         // Custom indicator of vendor service.
         isSauceLabs: true
       },
+      "safari7-mac": {
+        desiredCapabilities: {
+          browserName: "safari",
+          platform: "OS X 10.9",
+          version: "7"
+        }
+      },
       "chrome-win7": {
         desiredCapabilities: {
           browserName: "chrome",
           platform: "Windows 7"
+        }
+      },
+      "firefox-win7": {
+        desiredCapabilities: {
+          browserName: "firefox",
+          platform: "Windows 7"
+        }
+      },
+      "ie8-winxp": {
+        desiredCapabilities: {
+          browserName: "internet explorer",
+          platform: "Windows XP",
+          version: "8"
+        }
+      },
+      "ie9-win7": {
+        desiredCapabilities: {
+          browserName: "internet explorer",
+          platform: "Windows 7",
+          version: "9"
+        }
+      },
+      "ie10-win7": {
+        desiredCapabilities: {
+          browserName: "internet explorer",
+          platform: "Windows 7",
+          version: "10"
+        }
+      },
+      "ie11-win8": {
+        desiredCapabilities: {
+          browserName: "internet explorer",
+          platform: "Windows 8.1",
+          version: "11"
         }
       }
     },

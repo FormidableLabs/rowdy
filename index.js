@@ -22,17 +22,14 @@ var rowdy = module.exports = function (cfg) {
  */
 Object.defineProperty(rowdy, "client", {
   get: function () {
-    var cfg = rowdy.config;
-
-    return client(cfg, cfg._setting);
+    return client(rowdy.config, rowdy.setting);
   }
 });
 
 /**
  * rowdy.config
  *
- * Configuration with Selenium `desiredCapabilities` and WD `remote`
- * initialization options.
+ * Overall configuration object.
  */
 Object.defineProperty(rowdy, "config", {
   get: function () {
@@ -42,6 +39,17 @@ Object.defineProperty(rowdy, "config", {
   }
 });
 
+/**
+ * rowdy.config
+ *
+ * Configuration with Selenium `desiredCapabilities` and WD `remote`
+ * initialization options.
+ */
+Object.defineProperty(rowdy, "setting", {
+  get: function () {
+    return rowdy.config._setting;
+  }
+});
 /**
  * Initialize the client with capabilities.
  */
