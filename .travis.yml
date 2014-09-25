@@ -18,5 +18,5 @@ env:
 
 script:
   # Run the "check" script only once.
-  - '[ "$ROWDY_CHECK" ] && ./node_modules/.bin/gulp check || true'
+  - 'if [ "$ROWDY_CHECK" ]; then ./node_modules/.bin/gulp check; else true; fi'
   - '[ "$ROWDY_CHECK" ] || npm test'
