@@ -1,11 +1,11 @@
 /**
  * Global setup / teardown.
  */
-var sel = require("../../../lib/selenium");
-var client = require("../../../index").client;
-console.log("TODO HERE", JSON.stringify(client, null, 2));
-throw new Error("HI");
-var client = require("../../../lib/browser").getClient();
+var rowdy = require("../../../index");
+var client = rowdy.client;
+var sel = rowdy.server;
+console.log("TODO HERE", JSON.stringify(rowdy.config, null, 2));
+var desiredCapabilities = rowdy.config.desiredCapabilities;
 
 // Globals
 var ELEM_WAIT = 200;
@@ -15,10 +15,6 @@ var allPassed = true;
 
 // SETUP: Selenium
 before(function (done) {
-  if (config.IS_SAUCE) {
-    return done();
-  }
-
   // Start selenium and wait until ready.
   sel.start();
   sel.ready(done);
@@ -27,7 +23,7 @@ before(function (done) {
 // SETUP: Client
 before(function (done) {
   client
-    .init(config.get().desiredCapabilities)
+    .init(desiredCapabilities)
     .setImplicitWaitTimeout(ELEM_WAIT)
     .nodeify(done);
 });
@@ -42,18 +38,15 @@ afterEach(function () {
 after(function (done) {
   client
     .quit()
-    .then(function () {
-      // Splice in passing state for Sauce Labs.
-      return config.IS_SAUCE ? client.sauceJobStatus(allPassed) : client;
-    })
+    // .then(function () {
+    //   // Splice in passing state for Sauce Labs.
+    //   // TODO: FIX THIS
+    //   return config.IS_SAUCE ? client.sauceJobStatus(allPassed) : client;
+    // })
     .nodeify(done);
 });
 
 // TEARDOWN: Selenium
 after(function () {
-  if (config.IS_SAUCE) {
-    return;
-  }
-
   sel.kill();
 });

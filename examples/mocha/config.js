@@ -1,15 +1,5 @@
 /**
  * Configurations.
- *
- * Override options with:
- * ```
- * ROWDY_OPTIONS='{ startLogger: true }'
- * ```
- *
- * Hook to a configuration with:
- * ```
- * ROWDY_SETTINGS="local.chrome"
- * ```
  */
 // Sauce
 var SAUCE_BRANCH = process.env.TRAVIS_BRANCH || "local";
@@ -27,11 +17,12 @@ module.exports = {
    * Options can be globally overriden with a merge of a stringified JSON
    * object like:
    * ```
-   * ROWDY_OPTIONS='{ startLogger: true }'
+   * ROWDY_OPTIONS='{ clientLogger: true }'
    * ```
    */
   options: {
-    startLogger: false
+    clientLogger: false,
+    serverLogger: false
   },
 
   /**
@@ -81,7 +72,7 @@ module.exports = {
           browserName: "safari"
         }
       },
-      safari: {
+      ie: {
         desiredCapabilities: {
           browserName: "internet explorer"
         }
@@ -99,10 +90,12 @@ module.exports = {
           tags: [SAUCE_TAG],
           name: "Functional Tests"
         },
-        host: "ondemand.saucelabs.com",
-        port: 80,
-        user: process.env.SAUCE_USERNAME,
-        key: process.env.SAUCE_ACCESS_KEY
+        remote: {
+          hostname: "ondemand.saucelabs.com",
+          port: 80,
+          user: process.env.SAUCE_USERNAME,
+          pwd: process.env.SAUCE_ACCESS_KEY
+        }
       },
       "chrome-win7": {
         desiredCapabilities: {
@@ -123,10 +116,12 @@ module.exports = {
           name: BROWSER_STACK_TAG,
           project: "Functional Tests"
         },
-        host: "hub.browserstack.com",
-        port: 80,
-        user: process.env.BROWSER_STACK_USERNAME,
-        key: process.env.BROWSER_STACK_ACCESS_KEY
+        remote: {
+          hostname: "hub.browserstack.com",
+          port: 80,
+          user: process.env.BROWSER_STACK_USERNAME,
+          pwd: process.env.BROWSER_STACK_ACCESS_KEY
+        }
       },
       /*jshint camelcase:false*/
       "chrome-win7": {

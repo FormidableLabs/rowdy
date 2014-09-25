@@ -3,7 +3,7 @@
  */
 /*global $*/
 var asserters = require("wd").asserters;
-var client = require("../../../lib/browser").getClient();
+var client = require("../../../index").client;
 
 // TODO: Encapsulate this somewhere / switch asserts...
 var _wrapFn = function (fn) {
