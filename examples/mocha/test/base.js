@@ -3,9 +3,6 @@
  */
 var rowdy = require("../../../index");
 var client = rowdy.client;
-var sel = rowdy.server;
-console.log("TODO HERE", JSON.stringify(rowdy.config, null, 2));
-var desiredCapabilities = rowdy.config.desiredCapabilities;
 
 // Globals
 var ELEM_WAIT = 200;
@@ -15,15 +12,13 @@ var allPassed = true;
 
 // SETUP: Selenium
 before(function (done) {
-  // Start selenium and wait until ready.
-  sel.start();
-  sel.ready(done);
+  rowdy.setup(done);
 });
 
 // SETUP: Client
 before(function (done) {
   client
-    .init(desiredCapabilities)
+    .init(/*TODO*/)
     .setImplicitWaitTimeout(ELEM_WAIT)
     .nodeify(done);
 });
@@ -47,6 +42,6 @@ after(function (done) {
 });
 
 // TEARDOWN: Selenium
-after(function () {
-  sel.kill();
+after(function (done) {
+  rowdy.teardown(done);
 });
