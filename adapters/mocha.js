@@ -11,7 +11,7 @@
  *
  * So, you can expand into your own global setup.
  */
-/*globals before:false, beforeEach:false, afterEach:false, after:false */
+/*globals before:false, afterEach:false, after:false */
 // State
 var allPassed = true;
 

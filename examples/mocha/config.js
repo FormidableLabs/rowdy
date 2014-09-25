@@ -95,7 +95,9 @@ module.exports = {
           port: 80,
           user: process.env.SAUCE_USERNAME,
           pwd: process.env.SAUCE_ACCESS_KEY
-        }
+        },
+        // Custom indicator of vendor service.
+        isSauceLabs: true
       },
       "chrome-win7": {
         desiredCapabilities: {
@@ -121,7 +123,9 @@ module.exports = {
           port: 80,
           user: process.env.BROWSER_STACK_USERNAME,
           pwd: process.env.BROWSER_STACK_ACCESS_KEY
-        }
+        },
+        // Custom indicator of vendor service.
+        isBrowserStack: true
       },
       /*jshint camelcase:false*/
       "chrome-win7": {
