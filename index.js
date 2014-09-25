@@ -22,7 +22,9 @@ var rowdy = module.exports = function (cfg) {
  */
 Object.defineProperty(rowdy, "client", {
   get: function () {
-    return client(rowdy.config);
+    var cfg = rowdy.config;
+
+    return client(cfg, cfg._setting);
   }
 });
 
