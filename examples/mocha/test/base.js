@@ -10,12 +10,10 @@ var ELEM_WAIT = 200;
 // State
 var allPassed = true;
 
-// SETUP: Selenium
+// Set up Rowdy, then client-specific options.
 before(function (done) {
   rowdy.setup(done);
 });
-
-// SETUP: Client
 before(function (done) {
   client
     .setImplicitWaitTimeout(ELEM_WAIT)
