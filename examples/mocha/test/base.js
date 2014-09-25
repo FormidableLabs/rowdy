@@ -1,9 +1,10 @@
 /**
  * Global setup / teardown.
  */
-throw new Error("HI");
 var sel = require("../../../lib/selenium");
-var config = require("../../../lib/config");
+var client = require("../../../index").client;
+console.log("TODO HERE", JSON.stringify(client, null, 2));
+throw new Error("HI");
 var client = require("../../../lib/browser").getClient();
 
 // Globals
