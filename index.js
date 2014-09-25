@@ -41,6 +41,20 @@ Object.defineProperty(rowdy, "config", {
 });
 
 /**
+ * Initialize the client with capabilities.
+ */
+var _initClient = function (callback) {
+  return function () {
+    var caps = rowdy.config._setting.desiredCapabilities;
+    var client = rowdy.client;
+
+    client
+      .init(caps)
+      .nodeify(callback);
+  };
+};
+
+/**
  * rowdy.setup()
  *
  * Set up Selenium server and other state.
@@ -48,8 +62,11 @@ Object.defineProperty(rowdy, "config", {
 rowdy.setup = function (callback) {
   var cfg = rowdy.config;
 
+  // Patch callback to finish by calling client initialization.
+  callback = callback ? _initClient(callback) : _initClient();
+
+  // Start selenium and wait until ready.
   if (cfg._setting.startLocal) {
-    // Start selenium and wait until ready.
     selenium.start();
     return selenium.ready(callback);
   }
@@ -64,11 +81,15 @@ rowdy.setup = function (callback) {
  */
 rowdy.teardown = function (callback) {
   var cfg = rowdy.config;
+  var client = rowdy.client;
 
-  if (cfg._setting.startLocal) {
-    // Kill server.
-    selenium.kill();
-  }
+  // Shutdown the client.
+  client.quit().nodeify(function () {
+    // Shutdown the server.
+    if (cfg._setting.startLocal) {
+      selenium.kill();
+    }
 
-  callback();
+    callback();
+  });
 };
