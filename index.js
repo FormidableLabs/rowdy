@@ -93,3 +93,11 @@ rowdy.teardown = function (callback) {
     callback();
   });
 };
+
+/**
+ * Adapters.
+ */
+rowdy.adapters = {
+  mocha: require("./adapters/mocha")
+};
+

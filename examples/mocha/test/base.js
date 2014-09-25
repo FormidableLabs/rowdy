@@ -1,33 +1,26 @@
 /**
  * Global setup / teardown.
  */
+// Configure Rowdy, then access the client.
 var rowdy = require("../../../index");
+var config = require("../config");
+rowdy(config);
+
 var client = rowdy.client;
+var adapter = rowdy.adapters.mocha;
 
 // Globals
 var ELEM_WAIT = 200;
 
-// State
-var allPassed = true;
+adapter.before();
 
-// Set up Rowdy, then client-specific options.
-before(function (done) {
-  rowdy.setup(done);
-});
+// Additional, custom before for further client tweaks.
 before(function (done) {
   client
     .setImplicitWaitTimeout(ELEM_WAIT)
     .nodeify(done);
 });
 
-// STATE: Accumulate test passes.
-afterEach(function () {
-  // TODO: SOMETHING HERE FOR SAUCE.
-  // Accumulate passed state to send to PAAS vendors (if relevant).
-  allPassed = allPassed && this.currentTest.state === "passed";
-});
+adapter.afterEach();
+adapter.after();
 
-// TEARDOWN: Selenium
-after(function (done) {
-  rowdy.teardown(done);
-});
