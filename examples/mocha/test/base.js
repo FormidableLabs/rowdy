@@ -1,11 +1,7 @@
 /**
  * Global setup / teardown.
  */
-// Configure Rowdy, then access the client.
 var rowdy = require("../../../index");
-var config = require("../config");
-rowdy(config);
-
 var client = rowdy.client;
 var adapter = rowdy.adapters.mocha;
 
