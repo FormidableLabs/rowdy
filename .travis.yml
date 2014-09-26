@@ -19,7 +19,8 @@ env:
     - ROWDY_SETTINGS="sauceLabs.safari7-mac"
     - ROWDY_SETTINGS="sauceLabs.chrome-win7"
     - ROWDY_SETTINGS="sauceLabs.firefox-win7"
-    - ROWDY_SETTINGS="sauceLabs.ie8-winxp"
+    # FAILS: https://github.com/FormidableLabs/rowdy/issues/5
+    #- ROWDY_SETTINGS="sauceLabs.ie8-winxp"
     - ROWDY_SETTINGS="sauceLabs.ie9-win7"
     - ROWDY_SETTINGS="sauceLabs.ie10-win7"
     - ROWDY_SETTINGS="sauceLabs.ie11-win8"
