@@ -1,7 +1,9 @@
 /**
  * Adapter: Mocha.
  *
- * Call adapter methods in the first-run spec file (e.g., "base").
+ * This adapter assumes you have a single server and single client (e.g.,
+ * one browser session) for all your tests. Thus, you need to manually set up
+ * a known state in something like a `beforeEach`.
  *
  * Gives basic global setup / teardown.
  * - `before`
@@ -9,17 +11,27 @@
  * - `afterEach`
  * - `after`
  *
- * So, you can expand into your own global setup.
+ * That you can call in the first-run spec file (e.g., "base").
+ *
+ * If this doesn't exactly fit your scenario (e.g., want a new client for
+ * certain tests), then review the code here and write your own setup/teardown!
  */
 /*globals before:false, afterEach:false, after:false */
 // State
 var allPassed = true;
 
 module.exports = {
+  /**
+   * Setup server, then client.
+   */
   before: function () {
     var rowdy = require("../index");
+
+    // Setup server, then client.
     before(function (done) {
-      rowdy.setup(done);
+      rowdy.setupServer(function () {
+        rowdy.setupClient(done);
+      });
     });
   },
 
@@ -34,8 +46,9 @@ module.exports = {
 
   after: function () {
     var rowdy = require("../index");
+
+    // Handle SauceLabs accumulation.
     after(function (done) {
-      // Handle SauceLabs accumulation.
       if (rowdy.setting.isSauceLabs) {
         return rowdy.client
           .sauceJobStatus(allPassed)
@@ -46,8 +59,11 @@ module.exports = {
       done();
     });
 
+    // Teardown client, then server.
     after(function (done) {
-      rowdy.teardown(done);
+      rowdy.teardownClient(function () {
+        rowdy.teardownServer(done);
+      });
     });
   }
 };
