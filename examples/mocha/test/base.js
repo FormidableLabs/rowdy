@@ -13,8 +13,6 @@ var adapter = rowdy.adapters.mocha;
 var ELEM_WAIT = 200;
 
 adapter.before();
-
-// Additional, custom before for further client tweaks.
 before(function (done) {
   client
     .setImplicitWaitTimeout(ELEM_WAIT)
@@ -22,6 +20,16 @@ before(function (done) {
 });
 
 adapter.beforeEach();
+
 adapter.afterEach();
+afterEach(function (done) {
+  // Clear all LS to start from scratch.
+  // Note: Should come *after* not before browser window / session begins.
+  // See: http://stackoverflow.com/questions/21259235
+  client
+    .clearLocalStorage()
+    .nodeify(done);
+});
+
 adapter.after();
 
