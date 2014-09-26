@@ -50,33 +50,15 @@ Object.defineProperty(rowdy, "setting", {
     return rowdy.config._setting;
   }
 });
-/**
- * Initialize the client with capabilities.
- */
-var _initClient = function (callback) {
-  return function () {
-    var caps = rowdy.config._setting.desiredCapabilities;
-    var client = rowdy.client;
-
-    client
-      .init(caps)
-      .nodeify(callback);
-  };
-};
 
 /**
- * rowdy.setup()
+ * rowdy.setupServer()
  *
  * Set up Selenium server and other state.
  */
-rowdy.setup = function (callback) {
-  var cfg = rowdy.config;
-
-  // Patch callback to finish by calling client initialization.
-  callback = callback ? _initClient(callback) : _initClient();
-
+rowdy.setupServer = function (callback) {
   // Start selenium and wait until ready.
-  if (cfg._setting.startLocal) {
+  if (rowdy.config._setting.startLocal) {
     selenium.start();
     return selenium.ready(callback);
   }
@@ -85,23 +67,40 @@ rowdy.setup = function (callback) {
 };
 
 /**
- * rowdy.teardown()
+ * rowdy.setupClient()
+ *
+ * Set up WD client and other state.
+ */
+rowdy.setupClient = function (callback) {
+  var caps = rowdy.config._setting.desiredCapabilities;
+
+  rowdy.client
+    .init(caps)
+    .nodeify(callback);
+};
+
+/**
+ * rowdy.teardownClient()
  *
  * Tear down Selenium server and other state.
  */
-rowdy.teardown = function (callback) {
-  var cfg = rowdy.config;
-  var client = rowdy.client;
+rowdy.teardownServer = function (callback) {
+  if (rowdy.config._setting.startLocal) {
+    selenium.kill();
+  }
 
-  // Shutdown the client.
-  client.quit().nodeify(function () {
-    // Shutdown the server.
-    if (cfg._setting.startLocal) {
-      selenium.kill();
-    }
+  callback();
+};
 
-    callback();
-  });
+/**
+ * rowdy.teardownClient()
+ *
+ * Tear down WD client and other state.
+ */
+rowdy.teardownClient = function (callback) {
+  rowdy.client
+    .quit()
+    .nodeify(callback);
 };
 
 /**

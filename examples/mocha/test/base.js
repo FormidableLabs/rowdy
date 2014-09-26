@@ -21,6 +21,7 @@ before(function (done) {
     .nodeify(done);
 });
 
+adapter.beforeEach();
 adapter.afterEach();
 adapter.after();
 
