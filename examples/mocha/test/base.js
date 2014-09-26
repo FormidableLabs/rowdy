@@ -15,7 +15,13 @@ var ELEM_WAIT = 200;
 adapter.before();
 before(function (done) {
   client
+    // Global wait.
     .setImplicitWaitTimeout(ELEM_WAIT)
+
+    // Get the page a first time so that we can set LS.
+    .get("http://backbone-testing.com/notes/app/")
+    .clearLocalStorage()
+
     .nodeify(done);
 });
 

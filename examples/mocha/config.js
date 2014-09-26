@@ -1,6 +1,11 @@
 /**
  * Configurations.
  */
+// Travis
+var BUILD = process.env.TRAVIS_BUILD_NUMBER ?
+  process.env.TRAVIS_BUILD_NUMBER + "@" + process.env.TRAVIS_COMMIT :
+  "local";
+
 // Sauce
 var SAUCE_BRANCH = process.env.TRAVIS_BRANCH || "local";
 var SAUCE_TAG = process.env.SAUCE_USERNAME + "@" + SAUCE_BRANCH;
@@ -87,8 +92,10 @@ module.exports = {
     sauceLabs: {
       default: {
         desiredCapabilities: {
+          name: "Rowdy Tests",
           tags: [SAUCE_TAG],
-          name: "Functional Tests"
+          public: "public",
+          build: BUILD
         },
         remote: {
           hostname: "ondemand.saucelabs.com",
@@ -157,7 +164,8 @@ module.exports = {
       default: {
         desiredCapabilities: {
           name: BROWSER_STACK_TAG,
-          project: "Functional Tests"
+          project: "Rowdy Tests",
+          build: BUILD
         },
         remote: {
           hostname: "hub.browserstack.com",
