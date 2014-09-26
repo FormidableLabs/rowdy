@@ -169,12 +169,19 @@ module.exports = {
         isBrowserStack: true
       },
       /*jshint camelcase:false*/
+      "safari-mac": {
+        desiredCapabilities: {
+          browserName: "safari",
+          os: "OS X",
+          os_version: "Mavericks"
+        }
+      },
       "chrome-win7": {
         desiredCapabilities: {
           browserName: "chrome",
           os: "WINDOWS",
-          os_level: "7"
-        },
+          os_version: "7"
+        }
       }
       /*jshint camelcase:true*/
     },
