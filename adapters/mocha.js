@@ -18,6 +18,8 @@
  */
 /*globals before:false, afterEach:false, after:false */
 // State
+var attempted = 0;
+var finished = 0;
 var allPassed = true;
 
 module.exports = {
@@ -35,12 +37,17 @@ module.exports = {
     });
   },
 
-  beforeEach: function () {},
+  beforeEach: function () {
+    beforeEach(function () {
+      attempted++;
+    });
+  },
 
   afterEach: function () {
     afterEach(function () {
       // Accumulate passed state to send to PAAS vendors (if relevant).
       allPassed = allPassed && this.currentTest.state === "passed";
+      finished++;
     });
   },
 
@@ -51,7 +58,7 @@ module.exports = {
     after(function (done) {
       if (rowdy.setting.isSauceLabs) {
         return rowdy.client
-          .sauceJobStatus(allPassed)
+          .sauceJobStatus(allPassed && attempted === finished)
           .nodeify(done);
       }
 
