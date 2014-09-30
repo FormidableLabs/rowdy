@@ -1,6 +1,6 @@
 {
   "name": "rowdy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "WD.js configuration wrapper.",
   "main": "index.js",
   "dependencies": {
