@@ -52,7 +52,7 @@ rowdy.setupServer = function (callback) {
     });
   }
 
-  callback(server);
+  callback(null, server);
 };
 
 /**
