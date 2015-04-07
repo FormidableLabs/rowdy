@@ -2,13 +2,19 @@
  * Global setup / teardown.
  */
 var rowdy = require("../../../index");
-var client = rowdy.client;
 var adapter = rowdy.adapters.mocha;
+var client;
 
 // Globals
 var ELEM_WAIT = 200;
 
 adapter.before();
+before(function (done) {
+  adapter.getClient(function (err, clientObj) {
+    client = clientObj;
+    done(err);
+  });
+});
 before(function (done) {
   client
     // Global wait.

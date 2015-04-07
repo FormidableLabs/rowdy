@@ -2,29 +2,15 @@
  * Rowdy.
  */
 var config = require("./lib/config");
-var client = require("./lib/client");
-var selenium = require("./lib/selenium");
+var Client = require("./lib/client");
+var Server = require("./lib/server");
 
-// Stashed configuration.
+// Stashed, singleton configuration.
 var _config;
 
 var rowdy = module.exports = function (cfg) {
   _config = config(cfg);
 };
-
-/**
- * rowdy.client
- *
- * A WD.js promise chain browser / client.
- * Still needs `init()` to be called.
- *
- * See: https://github.com/admc/wd#browser-initialization
- */
-Object.defineProperty(rowdy, "client", {
-  get: function () {
-    return client(rowdy.config, rowdy.setting);
-  }
-});
 
 /**
  * rowdy.config
@@ -54,29 +40,35 @@ Object.defineProperty(rowdy, "setting", {
 /**
  * rowdy.setupServer()
  *
- * Set up Selenium server and other state.
+ * Set up new Selenium server and other state.
  */
 rowdy.setupServer = function (callback) {
+  var server = new Server(rowdy.config);
+
   // Start selenium and wait until ready.
-  if (rowdy.config._setting.startLocal) {
-    selenium.start();
-    return selenium.ready(callback);
+  if (rowdy.setting.startLocal) {
+    return server.start(function (err) {
+      callback(err, server);
+    });
   }
 
-  callback();
+  callback(server);
 };
 
 /**
  * rowdy.setupClient()
  *
- * Set up WD client and other state.
+ * Set up a new WD client and other state.
  */
 rowdy.setupClient = function (callback) {
-  var caps = rowdy.config._setting.desiredCapabilities;
+  var client = (new Client(rowdy.config, rowdy.setting)).client;
+  var caps = rowdy.setting.desiredCapabilities;
 
-  rowdy.client
+  client
     .init(caps)
-    .nodeify(callback);
+    .nodeify(function (err) {
+      callback(err, client);
+    });
 };
 
 /**
@@ -84,9 +76,9 @@ rowdy.setupClient = function (callback) {
  *
  * Tear down Selenium server and other state.
  */
-rowdy.teardownServer = function (callback) {
-  if (rowdy.config._setting.startLocal) {
-    selenium.kill();
+rowdy.teardownServer = function (server, callback) {
+  if (rowdy.setting.startLocal) {
+    return server.stop(callback);
   }
 
   callback();
@@ -97,8 +89,8 @@ rowdy.teardownServer = function (callback) {
  *
  * Tear down WD client and other state.
  */
-rowdy.teardownClient = function (callback) {
-  rowdy.client
+rowdy.teardownClient = function (client, callback) {
+  client
     .quit()
     .nodeify(callback);
 };

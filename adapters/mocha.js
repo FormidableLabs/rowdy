@@ -18,6 +18,8 @@
  */
 /*globals before:false, afterEach:false, after:false */
 // State
+var _client = null;
+var _server = null;
 var attempted = 0;
 var finished = 0;
 var allPassed = true;
@@ -31,8 +33,14 @@ module.exports = {
 
     // Setup server, then client.
     before(function (done) {
-      rowdy.setupServer(function () {
-        rowdy.setupClient(done);
+      rowdy.setupServer(function (serverErr, server) {
+        if (serverErr) { return done(serverErr); }
+        _server = server;
+        rowdy.setupClient(function (clientErr, client) {
+          if (clientErr) { return done(clientErr); }
+          _client = client;
+          done();
+        });
       });
     });
   },
@@ -56,8 +64,8 @@ module.exports = {
 
     // Handle SauceLabs accumulation.
     after(function (done) {
-      if (rowdy.setting.isSauceLabs) {
-        return rowdy.client
+      if (_client && rowdy.setting.isSauceLabs) {
+        return _client
           .sauceJobStatus(allPassed && attempted === finished)
           .nodeify(done);
       }
@@ -68,9 +76,24 @@ module.exports = {
 
     // Teardown client, then server.
     after(function (done) {
-      rowdy.teardownClient(function () {
-        rowdy.teardownServer(done);
-      });
+      if (!_client) { return done(); }
+      rowdy.teardownClient(_client, done);
     });
+    after(function (done) {
+      if (!_server) { return done(); }
+      rowdy.teardownServer(_server, done);
+    });
+  },
+
+  getClient: function (callback) {
+    if (!_client) { return callback(new Error("Client is unset")); }
+    callback(null, _client);
+  },
+
+  getServer: function (callback) {
+    if (!_server) { return callback(new Error("Server is unset")); }
+    callback(null, _server);
   }
 };
+
+

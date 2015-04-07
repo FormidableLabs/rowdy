@@ -3,7 +3,9 @@
  */
 /*global $*/
 var asserters = require("wd").asserters;
-var client = require("../../../index").client;
+var rowdy = require("../../../index");
+var adapter = rowdy.adapters.mocha;
+var client;
 
 // TODO: Encapsulate this somewhere / switch asserts...
 var _wrapFn = function (fn) {
@@ -11,6 +13,13 @@ var _wrapFn = function (fn) {
 };
 
 describe("notes", function () {
+
+  before(function (done) {
+    adapter.getClient(function (err, clientObj) {
+      client = clientObj;
+      done(err);
+    });
+  });
 
   it("adds a note and deletes it", function (done) {
     client
