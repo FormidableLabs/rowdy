@@ -8,16 +8,16 @@
     "lodash": "2.4.1"
   },
   "peerDependencies": {
-    "selenium-standalone": "*",
+    "selenium-standalone": ">=3.0.0",
     "wd": "*"
   },
   "devDependencies": {
     "chai": "1.9.1",
-    "mocha": "1.21.4",
     "gulp": "3.8.7",
     "gulp-jshint": "1.8.4",
+    "mocha": "1.21.4",
     "phantomjs": "1.9.9",
-    "selenium-standalone": "2.43.1-2.9.0-1",
+    "selenium-standalone": "4.2.2",
     "wd": "0.3.8"
   },
   "repository": {
@@ -34,6 +34,7 @@
     "url": "https://github.com/FormidableLabs/rowdy/issues"
   },
   "scripts": {
-    "test": "cd examples/mocha && mocha"
+    "test": "cd examples/mocha && mocha",
+    "sel-install": "selenium-standalone install"
   }
 }
