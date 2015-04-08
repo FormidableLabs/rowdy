@@ -1,7 +1,10 @@
 /**
  * Configurations.
  */
+// Windows: Phantom path inference.
 var path = require("path");
+var PHANTOM_PATH = process.platform === "win32" && path.join(__dirname,
+  "../../node_modules/phantomjs/lib/phantom/phantomjs.exe");
 
 // Travis
 var BUILD = process.env.TRAVIS_BUILD_NUMBER ?
@@ -59,17 +62,13 @@ module.exports = {
           browserName: "phantomjs"
         },
         server: {
-          start: true
+          start: true,
+          phantomPath: PHANTOM_PATH
         }
       },
       phantomjs: {
         desiredCapabilities: {
           browserName: "phantomjs"
-        },
-        server: {
-          // Add path to NPM-installed Phantom EXE on Windows.
-          phantomPath: process.platform === "win32" && path.join(__dirname,
-            "../../node_modules/phantomjs/lib/phantom/phantomjs.exe")
         }
       },
       firefox: {
