@@ -1,6 +1,8 @@
 /**
  * Configurations.
  */
+var path = require("path");
+
 // Travis
 var BUILD = process.env.TRAVIS_BUILD_NUMBER ?
   process.env.TRAVIS_BUILD_NUMBER + "@" + process.env.TRAVIS_COMMIT :
@@ -56,16 +58,18 @@ module.exports = {
         desiredCapabilities: {
           browserName: "phantomjs"
         },
-        selenium: {
-          // Start local server?
-          start: true,
-          // Path to PhantomJS binary (only set if need to override).
-          phantomPath: false
+        server: {
+          start: true
         }
       },
       phantomjs: {
         desiredCapabilities: {
           browserName: "phantomjs"
+        },
+        server: {
+          // Add path to NPM-installed Phantom EXE on Windows.
+          phantomPath: process.platform === "win32" && path.join(__dirname,
+            "../../node_modules/phantomjs/lib/phantom/phantomjs.exe")
         }
       },
       firefox: {

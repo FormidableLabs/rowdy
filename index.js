@@ -33,7 +33,7 @@ Object.defineProperty(rowdy, "config", {
  */
 Object.defineProperty(rowdy, "setting", {
   get: function () {
-    return rowdy.config._setting;
+    return rowdy.config.setting;
   }
 });
 
@@ -46,7 +46,7 @@ rowdy.setupServer = function (callback) {
   var server = new Server(rowdy.config);
 
   // Start selenium and wait until ready.
-  if (rowdy.setting.selenium.start) {
+  if (rowdy.setting.server.start) {
     return server.start(function (err) {
       callback(err, server);
     });
@@ -77,7 +77,7 @@ rowdy.setupClient = function (callback) {
  * Tear down Selenium server and other state.
  */
 rowdy.teardownServer = function (server, callback) {
-  if (rowdy.setting.selenium.start) {
+  if (rowdy.setting.server.start) {
     return server.stop(callback);
   }
 
