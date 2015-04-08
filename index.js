@@ -46,7 +46,7 @@ rowdy.setupServer = function (callback) {
   var server = new Server(rowdy.config);
 
   // Start selenium and wait until ready.
-  if (rowdy.setting.startLocal) {
+  if (rowdy.setting.selenium.start) {
     return server.start(function (err) {
       callback(err, server);
     });
@@ -77,7 +77,7 @@ rowdy.setupClient = function (callback) {
  * Tear down Selenium server and other state.
  */
 rowdy.teardownServer = function (server, callback) {
-  if (rowdy.setting.startLocal) {
+  if (rowdy.setting.selenium.start) {
     return server.stop(callback);
   }
 

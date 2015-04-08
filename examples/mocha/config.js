@@ -27,7 +27,8 @@ module.exports = {
    */
   options: {
     clientLogger: false,
-    serverLogger: false
+    serverLogger: false,
+    serverDebug: false
   },
 
   /**
@@ -55,7 +56,12 @@ module.exports = {
         desiredCapabilities: {
           browserName: "phantomjs"
         },
-        startLocal: true
+        selenium: {
+          // Start local server?
+          start: true,
+          // Path to PhantomJS binary (only set if need to override).
+          phantomPath: false
+        }
       },
       phantomjs: {
         desiredCapabilities: {
