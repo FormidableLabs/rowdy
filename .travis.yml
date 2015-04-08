@@ -9,17 +9,24 @@ branches:
   only:
     - master
 
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
 env:
   # NOTE: **Cannot** have a space after `:` character in JSON string or else
   # YAML parser will fail to parse correctly.
   global:
-    - ROWDY_OPTIONS='{ "clientLogger":true }'
+    - ROWDY_OPTIONS='{ "clientLogger":true, "serverLogger":true }'
     - secure: RNc5J2RK3sBqx9UoQSORuqm57lmE3nGWsIyb3Yr9JG4PYcwBidFlZpT/pk5nvFNKfRjSe9hfXAeJRYRD8QqenG3YASDH278hdW+g1QyBJeorEZGwtDfqxtKfiif5yaULaYF7LjhAzIMlyqiz9NbbM7gwiwtlBkWRGenrwHJ2U9o=
     - secure: W5dyVnpoWwRIDkgkGza4VLnsghYGYdbP3U0sZY5Olp2Enx/AXijgYlmILbnef7lGV/lp3f0GT2JIYdiK0ESkrsgpltdu8YedAfB1Ld8vcQbt5KU/AQic1TQFwDKviVG3Wdqhyndd5kfP4tanGLjpeixdhYFAbApr7zjpCD1DTEE=
     - secure: ZFOUkBbo5MLheb/PeKevyj/4fTd4rBJFQebLxeFaCcRfK7iZfulRAG3Hi8r2VX0+eaV3iMy5e2oIui4Msrtxiu/U53R1TPm0K253qPghwRodMTdKqECgZnOqDBeytb/CgveOcxN3j4SgNQn6DnO32zH0tUcJbzhDdYBQT9fNz3s=
     - secure: GmmWm6z4Hg02ZCuy5pb9+yfWPKALnLjbh+H0s2UEihzepvKcgI4+BkRubWAfxbMLzISBLN+NF7i3KE/Sf81/OvskQp7M9Z91EucokUK7iFRHZBcAl6BJ7cY5WwJxpRjoIruUE0CgmHKEHjrKl9VkPMnu/7dK/2SxSDnPM1A4ims=
   matrix:
     - ROWDY_CHECK=1
+    # Local
+    - ROWDY_SETTINGS="local.phantomjs"
+    - ROWDY_SETTINGS="local.firefox"
     # Sauce Labs
     - ROWDY_SETTINGS="sauceLabs.safari7-mac"
     - ROWDY_SETTINGS="sauceLabs.chrome-win7"
