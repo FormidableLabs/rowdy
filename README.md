@@ -11,7 +11,7 @@ Main features:
 * Integration helpers for Mocha tests.
 * Use your own test framework and test runner.
 
-## Usage
+## Basic Usage
 
 First, install the library.
 
@@ -31,9 +31,41 @@ var config = require("./PATH/TO/config");
 rowdy(config);
 ```
 
+## Local Usage
+
+One of the Rowdy peer dependencies is `selenium-standalone`. This package
+contains an install script that you may need (and do need on Windows):
+
+```
+$ node_modules/.bin/selenium-standalone install
+```
+
+Some other tips and tricks:
+
+### Mac + Safari
+
+Recent Safari updates have broken automatic driver usage, so you need a series
+of tedious steps per http://elementalselenium.com/tips/69-safari:
+
+* Download the driver at your current version from `https://github.com/SeleniumHQ/selenium/raw/selenium-VERSION/javascript/safari-driver/prebuilt/SafariDriver.safariextz`. A current version used in `selenium-standalone` is `2.45.0`, so
+that would correspond to:
+[ithub.com/SeleniumHQ/selenium/raw/selenium-2.45.0/javascript/safari-driver/prebuilt/SafariDriver.safariextz](https://github.com/SeleniumHQ/selenium/raw/selenium-2.45.0/javascript/safari-driver/prebuilt/SafariDriver.safariextz)
+* Double click the downloaded driver file. Click "Install" when prompted by
+  Safari.
+
+### Windows + IE
+
+See https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration
+for extra steps needed to work with local IE. Anecdotally, for Win7+IE11 in a
+VM, the only actually tweak needed was:
+
+* Create key
+  `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE`
+  and add DWORD of `iexplore.exe` defaulted to `0` value.
+
 ## API
 
-*TODO*
+**TODO**: API is still settling out.
 
 ### Examples:
 

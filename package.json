@@ -18,7 +18,7 @@
     "mocha": "1.21.4",
     "phantomjs": "1.9.9",
     "selenium-standalone": "4.2.2",
-    "wd": "0.3.8"
+    "wd": "0.3.11"
   },
   "repository": {
     "type": "git",

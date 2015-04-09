@@ -1,6 +1,11 @@
 /**
  * Configurations.
  */
+// Windows: Phantom path inference.
+var path = require("path");
+var PHANTOM_PATH = process.platform === "win32" && path.join(__dirname,
+  "../../node_modules/phantomjs/lib/phantom/phantomjs.exe");
+
 // Travis
 var BUILD = process.env.TRAVIS_BUILD_NUMBER ?
   process.env.TRAVIS_BUILD_NUMBER + "@" + process.env.TRAVIS_COMMIT :
@@ -27,7 +32,8 @@ module.exports = {
    */
   options: {
     clientLogger: false,
-    serverLogger: false
+    serverLogger: false,
+    serverDebug: false
   },
 
   /**
@@ -55,7 +61,10 @@ module.exports = {
         desiredCapabilities: {
           browserName: "phantomjs"
         },
-        startLocal: true
+        server: {
+          start: true,
+          phantomPath: PHANTOM_PATH
+        }
       },
       phantomjs: {
         desiredCapabilities: {
