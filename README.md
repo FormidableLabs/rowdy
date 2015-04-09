@@ -11,7 +11,7 @@ Main features:
 * Integration helpers for Mocha tests.
 * Use your own test framework and test runner.
 
-## Usage
+## Basic Usage
 
 First, install the library.
 
@@ -31,9 +31,31 @@ var config = require("./PATH/TO/config");
 rowdy(config);
 ```
 
+## Local Usage
+
+One of the Rowdy peer dependencies is `selenium-standalone`. This package
+contains an install script that you may need (and do need on Windows):
+
+```
+$ node_modules/.bin/selenium-standalone install
+```
+
+Some other tips and tricks:
+
+### Windows + IE
+
+See https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration
+for extra steps needed to work with local IE. Anecdotally, for Win7+IE11 in a
+VM, the following was needed:
+
+* "Enable Protected Mode" toggled the same for all zones.
+* (IE11-specific) Created key
+  `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE`
+  and then added DWORD of `iexplore.exe` defaulted to `0` value.
+
 ## API
 
-*TODO*
+**TODO**: API is still settling out.
 
 ### Examples:
 
