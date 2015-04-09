@@ -46,12 +46,11 @@ Some other tips and tricks:
 
 See https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration
 for extra steps needed to work with local IE. Anecdotally, for Win7+IE11 in a
-VM, the following was needed:
+VM, the only actually tweak needed was:
 
-* "Enable Protected Mode" toggled the same for all zones.
-* (IE11-specific) Created key
+* Create key
   `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE`
-  and then added DWORD of `iexplore.exe` defaulted to `0` value.
+  and add DWORD of `iexplore.exe` defaulted to `0` value.
 
 ## API
 
