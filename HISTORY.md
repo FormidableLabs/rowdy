@@ -1,7 +1,7 @@
 History
 =======
 
-## Current
+## 0.1.0
 
 * **Breaking Changes**: Internal API has changed.
 * Refactor Client/Server to real classes.
