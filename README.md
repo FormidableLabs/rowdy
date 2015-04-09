@@ -42,6 +42,17 @@ $ node_modules/.bin/selenium-standalone install
 
 Some other tips and tricks:
 
+### Mac + Safari
+
+Recent Safari updates have broken automatic driver usage, so you need a series
+of tedious steps per http://elementalselenium.com/tips/69-safari:
+
+* Download the driver at your current version from `https://github.com/SeleniumHQ/selenium/raw/selenium-VERSION/javascript/safari-driver/prebuilt/SafariDriver.safariextz`. A current version used in `selenium-standalone` is `2.45.0`, so
+that would correspond to:
+[ithub.com/SeleniumHQ/selenium/raw/selenium-2.45.0/javascript/safari-driver/prebuilt/SafariDriver.safariextz](https://github.com/SeleniumHQ/selenium/raw/selenium-2.45.0/javascript/safari-driver/prebuilt/SafariDriver.safariextz)
+* Double click the downloaded driver file. Click "Install" when prompted by
+  Safari.
+
 ### Windows + IE
 
 See https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration
