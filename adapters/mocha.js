@@ -24,23 +24,29 @@ var attempted = 0;
 var finished = 0;
 var allPassed = true;
 
-module.exports = {
-  /**
-   * Setup server, then client.
-   */
+var adapter = module.exports = {
   before: function () {
     var rowdy = require("../index");
 
     // Setup server, then client.
     before(function (done) {
-      rowdy.setupServer(function (serverErr, server) {
-        if (serverErr) { return done(serverErr); }
+      // Check if actually using server.
+      if (!(rowdy.setting.server || {}).start) {
+        return done();
+      }
+
+      rowdy.setupServer(function (err, server) {
+        if (err) { return done(err); }
         _server = server;
-        rowdy.setupClient(function (clientErr, client) {
-          if (clientErr) { return done(clientErr); }
-          _client = client;
-          done();
-        });
+        done();
+      });
+    });
+
+    before(function (done) {
+      rowdy.setupClient(function (err, client) {
+        if (err) { return done(err); }
+        _client = client;
+        done();
       });
     });
   },
@@ -83,17 +89,18 @@ module.exports = {
       if (!_server) { return done(); }
       rowdy.teardownServer(_server, done);
     });
-  },
-
-  getClient: function (callback) {
-    if (!_client) { return callback(new Error("Client is unset")); }
-    callback(null, _client);
-  },
-
-  getServer: function (callback) {
-    if (!_server) { return callback(new Error("Server is unset")); }
-    callback(null, _server);
   }
 };
 
-
+/**
+ * Return configured WD.js client.
+ *
+ * **Note**: `adapter.before()` **must** be called before accessing this
+ * property.
+ */
+Object.defineProperty(adapter, "client", {
+  get: function () {
+    if (!_client) { throw new Error("Client is unset"); }
+    return _client;
+  }
+});
