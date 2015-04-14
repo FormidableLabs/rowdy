@@ -24,10 +24,7 @@ var attempted = 0;
 var finished = 0;
 var allPassed = true;
 
-module.exports = {
-  /**
-   * Setup server, then client.
-   */
+var adapter = module.exports = {
   before: function () {
     var rowdy = require("../index");
 
@@ -92,17 +89,18 @@ module.exports = {
       if (!_server) { return done(); }
       rowdy.teardownServer(_server, done);
     });
-  },
-
-  getClient: function (callback) {
-    if (!_client) { return callback(new Error("Client is unset")); }
-    callback(null, _client);
-  },
-
-  getServer: function (callback) {
-    if (!_server) { return callback(new Error("Server is unset")); }
-    callback(null, _server);
   }
 };
 
-
+/**
+ * Return configured WD.js client.
+ *
+ * **Note**: `adapter.before()` **must** be called before accessing this
+ * property.
+ */
+Object.defineProperty(adapter, "client", {
+  get: function () {
+    if (!_client) { throw new Error("Client is unset"); }
+    return _client;
+  }
+});

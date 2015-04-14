@@ -1,11 +1,9 @@
 /**
  * Example tests.
  */
-/*global $*/
 var asserters = require("wd").asserters;
 var rowdy = require("../../../index");
 var adapter = rowdy.adapters.mocha;
-var client;
 
 // TODO: Encapsulate this somewhere / switch asserts...
 var _wrapFn = function (fn) {
@@ -14,15 +12,8 @@ var _wrapFn = function (fn) {
 
 describe("notes", function () {
 
-  before(function (done) {
-    adapter.getClient(function (err, clientObj) {
-      client = clientObj;
-      done(err);
-    });
-  });
-
   it("adds a note and deletes it", function (done) {
-    client
+    adapter.client
       .get("http://backbone-testing.com/notes/app/")
 
       // Create a note.
@@ -40,6 +31,7 @@ describe("notes", function () {
       .waitForElementByCss(".notes-item .note-delete")
       .click()
       .waitFor(asserters.jsCondition(_wrapFn(function () {
+        /*global $*/
         return $(".notes-item .note-delete").length === 0;
       })))
 
@@ -47,7 +39,7 @@ describe("notes", function () {
   });
 
   it("adds a note and edits it", function (done) {
-    client
+    adapter.client
       .get("http://backbone-testing.com/notes/app/")
 
       // Create a note.
