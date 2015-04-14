@@ -33,14 +33,23 @@ module.exports = {
 
     // Setup server, then client.
     before(function (done) {
-      rowdy.setupServer(function (serverErr, server) {
-        if (serverErr) { return done(serverErr); }
+      // Check if actually using server.
+      if (!(rowdy.setting.server || {}).start) {
+        return done();
+      }
+
+      rowdy.setupServer(function (err, server) {
+        if (err) { return done(err); }
         _server = server;
-        rowdy.setupClient(function (clientErr, client) {
-          if (clientErr) { return done(clientErr); }
-          _client = client;
-          done();
-        });
+        done();
+      });
+    });
+
+    before(function (done) {
+      rowdy.setupClient(function (err, client) {
+        if (err) { return done(err); }
+        _client = client;
+        done();
       });
     });
   },
