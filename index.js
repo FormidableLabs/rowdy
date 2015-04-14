@@ -102,3 +102,10 @@ rowdy.adapters = {
   mocha: require("./adapters/mocha")
 };
 
+/**
+ * Helpers.
+ */
+rowdy.helpers = {
+  js: require("./helpers/js")
+};
+

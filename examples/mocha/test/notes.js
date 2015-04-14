@@ -3,12 +3,8 @@
  */
 var asserters = require("wd").asserters;
 var rowdy = require("../../../index");
+var jsFn = rowdy.helpers.js.fn;
 var adapter = rowdy.adapters.mocha;
-
-// TODO: Encapsulate this somewhere / switch asserts...
-var _wrapFn = function (fn) {
-  return "(" + fn.toString() + "())";
-};
 
 describe("notes", function () {
 
@@ -30,7 +26,7 @@ describe("notes", function () {
       // Delete a note
       .waitForElementByCss(".notes-item .note-delete")
       .click()
-      .waitFor(asserters.jsCondition(_wrapFn(function () {
+      .waitFor(asserters.jsCondition(jsFn(function () {
         /*global $*/
         return $(".notes-item .note-delete").length === 0;
       })))

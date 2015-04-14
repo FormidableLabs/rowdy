@@ -1,6 +1,10 @@
 History
 =======
 
+## Current
+
+* Add `rowdy.helpers.js`.
+
 ## 0.1.1
 
 * **Breaking Changes**: Internal API has changed.
