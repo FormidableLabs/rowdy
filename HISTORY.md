@@ -1,7 +1,7 @@
 History
 =======
 
-## Current
+## 0.1.1
 
 * **Breaking Changes**: Internal API has changed.
 * Switch to `adapter.client` synchronous property accessor.
