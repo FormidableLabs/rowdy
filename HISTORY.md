@@ -1,7 +1,7 @@
 History
 =======
 
-## Current
+## 0.1.3
 
 * Add `rowdy.helpers.js`.
 
