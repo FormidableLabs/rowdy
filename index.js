@@ -4,6 +4,10 @@
 var config = require("./lib/config");
 var Client = require("./lib/client");
 var Server = require("./lib/server");
+var log = require("./lib/log");
+// TODO: Add log props to internal libs?
+var serverLog = log.bind(log, "[CLIENT]".green);
+var clientLog = log.bind(log, "[SERVER]".yellow);
 
 // Stashed, singleton configuration.
 var _config;
@@ -48,6 +52,7 @@ rowdy.setupServer = function (callback) {
   // Start selenium and wait until ready.
   if ((rowdy.setting.server || {}).start) {
     return server.start(function (err) {
+      if (err) { serverLog("[error]".red, err.toString().trim()); }
       callback(err, server);
     });
   }
@@ -67,6 +72,7 @@ rowdy.setupClient = function (callback) {
   client
     .init(caps)
     .nodeify(function (err) {
+      if (err) { clientLog("[error]".red, err.toString().trim()); }
       callback(err, client);
     });
 };
