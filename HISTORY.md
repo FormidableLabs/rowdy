@@ -5,6 +5,10 @@ History
 
 * Add `rowdy.helpers.js`.
 
+## 0.1.2
+
+* Infer PhantomJS path using `require`.
+
 ## 0.1.1
 
 * **Breaking Changes**: Internal API has changed.

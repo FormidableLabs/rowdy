@@ -1,10 +1,11 @@
 /**
  * Configurations.
  */
-// Windows: Phantom path inference.
-var path = require("path");
-var PHANTOM_PATH = process.platform === "win32" && path.join(__dirname,
-  "../../node_modules/phantomjs/lib/phantom/phantomjs.exe");
+// Infer Phantom path off NPM module if available.
+var PHANTOM_PATH = false;
+try {
+  PHANTOM_PATH = require("phantomjs").path;
+} catch (err) {}
 
 // Travis
 var BUILD = process.env.TRAVIS_BUILD_NUMBER ?
