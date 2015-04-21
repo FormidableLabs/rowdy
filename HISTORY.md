@@ -1,6 +1,11 @@
 History
 =======
 
+## Current
+
+* Make configuration lazy off example.
+* Add `.LOG` static props to `Server` and `Client`.
+
 ## 0.1.3
 
 * Add `rowdy.helpers.js`.

@@ -22,13 +22,31 @@ $ npm install rowdy
 Then, create a configuration file. You can see an
 [example configuration](./examples/mocha/config.js) in our test examples.
 
-From there, you can instantiate and configure Rowdy for actual operations:
+## Configuration
+
+By default Rowdy will lazy initialize the library's included
+[config.js](./config.js) configuration file. (The first access of most
+`rowdy.*` properties / methods will force this.)
+
+However, on first import of Rowdy, you can override this behavior to do things
+like override parts of the default configuration:
 
 ```js
-// Configure Rowdy, then access the client.
-var rowdy = require("rowdy");
+// Start with default configuration.
+var config = require("rowdy/config");
+config.serverLogger = true;
+// ... any other mutations
+
+// Pass configuration in.
+var rowdy = require("rowdy")(config);
+```
+
+Or, you can simply copy [config.js](./config.js) to your project, edit it
+as appropriate and load:
+
+```js
 var config = require("./PATH/TO/config");
-rowdy(config);
+var rowdy = require("rowdy")(config);
 ```
 
 ## Local Usage
