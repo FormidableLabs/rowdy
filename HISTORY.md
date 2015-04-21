@@ -1,7 +1,7 @@
 History
 =======
 
-## Current
+## 0.1.4
 
 * Make configuration lazy off example.
 * Add `.LOG` static props to `Server` and `Client`.
