@@ -1,5 +1,23 @@
 /**
- * Configurations.
+ * A base configuration.
+ *
+ * This file will automatically be loaded by rowdy if used without calling
+ * `require("rowdy")(config)`.
+ *
+ * **Default**: Do nothing and allow rowdy to auto-configure with this file.
+ *
+ * **Import & Override**: You can import this file like:
+ *
+ * ```js
+ * var config = require("rowdy/config");
+ * var config.clientLogger = true;
+ * // OTHER MUTATIONS
+ * var rowdy = require("rowdy")(config);
+ * ```
+ *
+ * **Copy & Edit**: Or just copy this file to your own project and edit directly
+ * then import.
+ *
  */
 // Infer Phantom path off NPM module if available.
 var PHANTOM_PATH = false;

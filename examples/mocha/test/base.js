@@ -32,4 +32,3 @@ afterEach(function (done) {
 });
 
 adapter.after();
-

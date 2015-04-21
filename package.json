@@ -34,7 +34,9 @@
     "url": "https://github.com/FormidableLabs/rowdy/issues"
   },
   "scripts": {
-    "test": "cd examples/mocha && mocha",
+    "test": "npm run-script test-default-config && npm run-script test-manual-config",
+    "test-default-config": "cd examples/mocha && mocha",
+    "test-manual-config": "cd examples/mocha && mocha --require ./setup-manual-config",
     "sel-install": "selenium-standalone install"
   }
 }

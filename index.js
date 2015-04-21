@@ -4,16 +4,13 @@
 var config = require("./lib/config");
 var Client = require("./lib/client");
 var Server = require("./lib/server");
-var log = require("./lib/log");
-// TODO: Add log props to internal libs?
-var serverLog = log.bind(log, "[CLIENT]".green);
-var clientLog = log.bind(log, "[SERVER]".yellow);
 
 // Stashed, singleton configuration.
 var _config;
 
 var rowdy = module.exports = function (cfg) {
   _config = config(cfg);
+  return rowdy;
 };
 
 /**
@@ -23,7 +20,10 @@ var rowdy = module.exports = function (cfg) {
  */
 Object.defineProperty(rowdy, "config", {
   get: function () {
-    if (!_config) { throw new Error("Must configure Rowdy first!"); }
+    // Lazy initialization.
+    if (!_config) {
+      rowdy(require("./config"));
+    }
 
     return _config;
   }
@@ -52,7 +52,7 @@ rowdy.setupServer = function (callback) {
   // Start selenium and wait until ready.
   if ((rowdy.setting.server || {}).start) {
     return server.start(function (err) {
-      if (err) { serverLog("[error]".red, err.toString().trim()); }
+      if (err) { Server.LOG("[error]".red, err.toString().trim()); }
       callback(err, server);
     });
   }
@@ -72,7 +72,7 @@ rowdy.setupClient = function (callback) {
   client
     .init(caps)
     .nodeify(function (err) {
-      if (err) { clientLog("[error]".red, err.toString().trim()); }
+      if (err) { Client.LOG("[error]".red, err.toString().trim()); }
       callback(err, client);
     });
 };
