@@ -19,9 +19,6 @@ First, install the library.
 $ npm install rowdy
 ```
 
-Then, create a configuration file. You can see an
-[example configuration](./examples/mocha/config.js) in our test examples.
-
 ## Configuration
 
 By default Rowdy will lazy initialize the library's included
