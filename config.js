@@ -1,18 +1,18 @@
 /**
  * A base configuration.
  *
- * This file will automatically be loaded by rowdy if used without calling
- * `require("rowdy")(config)`.
+ * This file will automatically be loaded by rowdio if used without calling
+ * `require("rowdio")(config)`.
  *
- * **Default**: Do nothing and allow rowdy to auto-configure with this file.
+ * **Default**: Do nothing and allow rowdio to auto-configure with this file.
  *
  * **Import & Override**: You can import this file like:
  *
  * ```js
- * var config = require("rowdy/config");
+ * var config = require("rowdio/config");
  * var config.clientLogger = true;
  * // OTHER MUTATIONS
- * var rowdy = require("rowdy")(config);
+ * var rowdio = require("rowdio")(config);
  * ```
  *
  * **Copy & Edit**: Or just copy this file to your own project and edit directly
