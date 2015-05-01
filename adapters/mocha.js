@@ -72,8 +72,11 @@ var adapter = module.exports = {
     after(function (done) {
       if (_client && rowdio.setting.isSauceLabs) {
         return _client
-          .sauceJobStatus(allPassed && attempted === finished)
-          .nodeify(done);
+          .sauceJobStatus({
+            passed: allPassed && attempted === finished,
+            public: true
+          })
+          .end(done);
       }
 
       // Default.
