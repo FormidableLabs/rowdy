@@ -17,6 +17,8 @@
  * certain tests), then review the code here and write your own setup/teardown!
  */
 /*globals before:false, afterEach:false, after:false */
+var SauceLabs = require("saucelabs");
+
 // State
 var _client = null;
 var _server = null;
@@ -71,12 +73,18 @@ var adapter = module.exports = {
     // Handle SauceLabs accumulation.
     after(function (done) {
       if (_client && rowdio.setting.isSauceLabs) {
-        return _client
-          .sauceJobStatus({
+        // Manually update sauce labs.
+        // See: https://github.com/webdriverio/webdriverio/issues/374
+        var sessionID = _client.requestHandler.sessionID;
+        var sauceAccount = new SauceLabs({
+          username: process.env.SAUCE_USERNAME,
+          password: process.env.SAUCE_ACCESS_KEY
+        });
+
+        return sauceAccount.updateJob(sessionID, {
             passed: allPassed && attempted === finished,
             public: true
-          })
-          .call(done);
+          }, done);
       }
 
       // Default.

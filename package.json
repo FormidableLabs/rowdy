@@ -9,7 +9,8 @@
   },
   "peerDependencies": {
     "selenium-standalone": ">=3.0.0",
-    "webdriverio": "*"
+    "webdriverio": "*",
+    "saucelabs": "*"
   },
   "devDependencies": {
     "chai": "1.9.1",
@@ -17,6 +18,7 @@
     "gulp-jshint": "1.10.0",
     "mocha": "1.21.4",
     "phantomjs": "1.9.9",
+    "saucelabs": "^0.1.1",
     "selenium-standalone": "4.4.0",
     "webdriverio": "2.4.5"
   },

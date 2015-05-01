@@ -126,10 +126,10 @@ module.exports = {
           build: BUILD
         },
         remote: {
-          hostname: "ondemand.saucelabs.com",
+          host: "ondemand.saucelabs.com",
           port: 80,
           user: process.env.SAUCE_USERNAME,
-          pwd: process.env.SAUCE_ACCESS_KEY
+          key: process.env.SAUCE_ACCESS_KEY
         },
         // Custom indicator of vendor service.
         isSauceLabs: true
