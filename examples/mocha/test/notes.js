@@ -6,28 +6,21 @@ var adapter = rowdio.adapters.mocha;
 
 describe("notes", function () {
 
-  it.skip("adds a note and deletes it", function (done) {
+  it("adds a note and deletes it", function (done) {
     adapter.client
-      .get("http://backbone-testing.com/notes/app/")
+      .url("http://backbone-testing.com/notes/app/")
 
       // Create a note.
-      .waitForElementByCss("input#note-new-input")
-      .type("Delete Test")
-      .waitForElementByCss("button#note-create")
-      .click()
-      .waitForElementByCss(".notes-item .note-title")
-      .text()
-      .then(function (text) {
+      .setValue("input#note-new-input", "Delete Test")
+      .click("button#note-create")
+      .getText(".notes-item .note-title", function (err, text) {
+        if (err) { return done(err); }
         expect(text).to.equal("Delete Test");
       })
 
       // Delete a note
-      .waitForElementByCss(".notes-item .note-delete")
-      .click()
-      .waitFor(asserters.jsCondition(function () {
-        /*global $*/
-        return $(".notes-item .note-delete").length === 0;
-      }))
+      .click(".notes-item .note-delete")
+      .waitForExist(".notes-item .note-delete", false)
 
       .call(done);
   });
