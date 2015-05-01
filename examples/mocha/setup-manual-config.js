@@ -1,6 +1,6 @@
 /**
- * Additional configuration -- explicit Rowdy configuration.
+ * Additional configuration -- explicit Rowdio configuration.
  */
-var rowdy = require("../../index");
+var rowdio = require("../../index");
 var config = require("../../config");
-rowdy(config);
+rowdio(config);

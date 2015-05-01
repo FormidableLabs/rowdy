@@ -26,16 +26,16 @@ var allPassed = true;
 
 var adapter = module.exports = {
   before: function () {
-    var rowdy = require("../index");
+    var rowdio = require("../index");
 
     // Setup server, then client.
     before(function (done) {
       // Check if actually using server.
-      if (!(rowdy.setting.server || {}).start) {
+      if (!(rowdio.setting.server || {}).start) {
         return done();
       }
 
-      rowdy.setupServer(function (err, server) {
+      rowdio.setupServer(function (err, server) {
         if (err) { return done(err); }
         _server = server;
         done();
@@ -43,7 +43,7 @@ var adapter = module.exports = {
     });
 
     before(function (done) {
-      rowdy.setupClient(function (err, client) {
+      rowdio.setupClient(function (err, client) {
         if (err) { return done(err); }
         _client = client;
         done();
@@ -66,11 +66,11 @@ var adapter = module.exports = {
   },
 
   after: function () {
-    var rowdy = require("../index");
+    var rowdio = require("../index");
 
     // Handle SauceLabs accumulation.
     after(function (done) {
-      if (_client && rowdy.setting.isSauceLabs) {
+      if (_client && rowdio.setting.isSauceLabs) {
         return _client
           .sauceJobStatus(allPassed && attempted === finished)
           .nodeify(done);
@@ -83,11 +83,11 @@ var adapter = module.exports = {
     // Teardown client, then server.
     after(function (done) {
       if (!_client) { return done(); }
-      rowdy.teardownClient(_client, done);
+      rowdio.teardownClient(_client, done);
     });
     after(function (done) {
       if (!_server) { return done(); }
-      rowdy.teardownServer(_server, done);
+      rowdio.teardownServer(_server, done);
     });
   }
 };

@@ -46,7 +46,7 @@ module.exports = {
    * Options can be globally overriden with a merge of a stringified JSON
    * object like:
    * ```
-   * ROWDY_OPTIONS='{ clientLogger: true }'
+   * ROWDIO_OPTIONS='{ clientLogger: true }'
    * ```
    */
   options: {
@@ -58,7 +58,7 @@ module.exports = {
   /**
    * Webdriver settings and capabilities.
    *
-   * Select a path within this object using `ROWDY_SETTINGS="path.to.foo"`
+   * Select a path within this object using `ROWDIO_SETTINGS="path.to.foo"`
    * Which will then infer all of the `default` settings at that level
    * and merge with specific fields.
    */
@@ -120,7 +120,7 @@ module.exports = {
     sauceLabs: {
       default: {
         desiredCapabilities: {
-          name: "Rowdy Tests",
+          name: "Rowdio Tests",
           tags: [SAUCE_TAG],
           public: "public",
           build: BUILD
@@ -192,7 +192,7 @@ module.exports = {
       default: {
         desiredCapabilities: {
           name: BROWSER_STACK_TAG,
-          project: "Rowdy Tests",
+          project: "Rowdio Tests",
           build: BUILD
         },
         remote: {

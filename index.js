@@ -1,5 +1,5 @@
 /**
- * Rowdy.
+ * Rowdio.
  */
 var config = require("./lib/config");
 var Client = require("./lib/client");
@@ -8,21 +8,21 @@ var Server = require("./lib/server");
 // Stashed, singleton configuration.
 var _config;
 
-var rowdy = module.exports = function (cfg) {
+var rowdio = module.exports = function (cfg) {
   _config = config(cfg);
-  return rowdy;
+  return rowdio;
 };
 
 /**
- * rowdy.config
+ * rowdio.config
  *
  * Overall configuration object.
  */
-Object.defineProperty(rowdy, "config", {
+Object.defineProperty(rowdio, "config", {
   get: function () {
     // Lazy initialization.
     if (!_config) {
-      rowdy(require("./config"));
+      rowdio(require("./config"));
     }
 
     return _config;
@@ -30,27 +30,27 @@ Object.defineProperty(rowdy, "config", {
 });
 
 /**
- * rowdy.config
+ * rowdio.config
  *
  * Configuration with Selenium `desiredCapabilities` and WD `remote`
  * initialization options.
  */
-Object.defineProperty(rowdy, "setting", {
+Object.defineProperty(rowdio, "setting", {
   get: function () {
-    return rowdy.config.setting;
+    return rowdio.config.setting;
   }
 });
 
 /**
- * rowdy.setupServer()
+ * rowdio.setupServer()
  *
  * Set up new Selenium server and other state.
  */
-rowdy.setupServer = function (callback) {
-  var server = new Server(rowdy.config);
+rowdio.setupServer = function (callback) {
+  var server = new Server(rowdio.config);
 
   // Start selenium and wait until ready.
-  if ((rowdy.setting.server || {}).start) {
+  if ((rowdio.setting.server || {}).start) {
     return server.start(function (err) {
       if (err) { Server.LOG("[error]".red, err.toString().trim()); }
       callback(err, server);
@@ -61,13 +61,13 @@ rowdy.setupServer = function (callback) {
 };
 
 /**
- * rowdy.setupClient()
+ * rowdio.setupClient()
  *
  * Set up a new WD client and other state.
  */
-rowdy.setupClient = function (callback) {
-  var client = (new Client(rowdy.config, rowdy.setting)).client;
-  var caps = rowdy.setting.desiredCapabilities;
+rowdio.setupClient = function (callback) {
+  var client = (new Client(rowdio.config, rowdio.setting)).client;
+  var caps = rowdio.setting.desiredCapabilities;
 
   client
     .init(caps)
@@ -78,12 +78,12 @@ rowdy.setupClient = function (callback) {
 };
 
 /**
- * rowdy.teardownClient()
+ * rowdio.teardownClient()
  *
  * Tear down Selenium server and other state.
  */
-rowdy.teardownServer = function (server, callback) {
-  if ((rowdy.setting.server || {}).start) {
+rowdio.teardownServer = function (server, callback) {
+  if ((rowdio.setting.server || {}).start) {
     return server.stop(callback);
   }
 
@@ -91,11 +91,11 @@ rowdy.teardownServer = function (server, callback) {
 };
 
 /**
- * rowdy.teardownClient()
+ * rowdio.teardownClient()
  *
  * Tear down WD client and other state.
  */
-rowdy.teardownClient = function (client, callback) {
+rowdio.teardownClient = function (client, callback) {
   client
     .quit()
     .nodeify(callback);
@@ -104,14 +104,14 @@ rowdy.teardownClient = function (client, callback) {
 /**
  * Adapters.
  */
-rowdy.adapters = {
+rowdio.adapters = {
   mocha: require("./adapters/mocha")
 };
 
 /**
  * Helpers.
  */
-rowdy.helpers = {
+rowdio.helpers = {
   js: require("./helpers/js")
 };
 

@@ -2,9 +2,9 @@
  * Example tests.
  */
 var asserters = require("wd").asserters;
-var rowdy = require("../../../index");
-var jsFn = rowdy.helpers.js.fn;
-var adapter = rowdy.adapters.mocha;
+var rowdio = require("../../../index");
+var jsFn = rowdio.helpers.js.fn;
+var adapter = rowdio.adapters.mocha;
 
 describe("notes", function () {
 

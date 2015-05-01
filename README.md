@@ -1,8 +1,8 @@
-roWDy
-=====
+Rowdio
+======
 
 A small, rambuctious configuration wrapper for
-[WD.js](https://github.com/admc/wd).
+[WebdriverIO](http://webdriver.io/).
 
 Main features:
 
@@ -11,31 +11,36 @@ Main features:
 * Integration helpers for Mocha tests.
 * Use your own test framework and test runner.
 
+Related projects:
+
+* [rowdy](https://github.com/FormidableLabs/rowdy): Wrapper for
+  [WD.js](https://github.com/admc/wd).
+
 ## Basic Usage
 
 First, install the library.
 
 ```
-$ npm install rowdy
+$ npm install rowdio
 ```
 
 ## Configuration
 
-By default Rowdy will lazy initialize the library's included
+By default Rowdio will lazy initialize the library's included
 [config.js](./config.js) configuration file. (The first access of most
-`rowdy.*` properties / methods will force this.)
+`rowdio.*` properties / methods will force this.)
 
-However, on first import of Rowdy, you can override this behavior to do things
+However, on first import of Rowdio, you can override this behavior to do things
 like override parts of the default configuration:
 
 ```js
 // Start with default configuration.
-var config = require("rowdy/config");
+var config = require("rowdio/config");
 config.serverLogger = true;
 // ... any other mutations
 
 // Pass configuration in.
-var rowdy = require("rowdy")(config);
+var rowdio = require("rowdio")(config);
 ```
 
 Or, you can simply copy [config.js](./config.js) to your project, edit it
@@ -43,12 +48,12 @@ as appropriate and load:
 
 ```js
 var config = require("./PATH/TO/config");
-var rowdy = require("rowdy")(config);
+var rowdio = require("rowdio")(config);
 ```
 
 ## Local Usage
 
-One of the Rowdy peer dependencies is `selenium-standalone`. This package
+One of the Rowdio peer dependencies is `selenium-standalone`. This package
 contains an install script that you may need (and do need on Windows):
 
 ```
@@ -85,7 +90,7 @@ VM, the only actually tweak needed was:
 ### Examples:
 
 * [examples/mocha](./examples/mocha): Basic Mocha/Chai tests using WD promises
-  and the [Rowdy Mocha Adapter](./adapters/mocha.js)
+  and the [Rowdio Mocha Adapter](./adapters/mocha.js)
 
 ## WD Guide
 
@@ -103,8 +108,8 @@ We test all changes with [Travis CI][trav]. Here's our current
 [![Build Status][trav_img]][trav_site]
 
 [trav]: https://travis-ci.org/
-[trav_img]: https://travis-ci.org/FormidableLabs/rowdy.svg
-[trav_site]: https://travis-ci.org/FormidableLabs/rowdy
+[trav_img]: https://travis-ci.org/FormidableLabs/rowdio.svg
+[trav_site]: https://travis-ci.org/FormidableLabs/rowdio
 [trav_cfg]: ./.travis.yml
 
 We also do multi-browser testing thanks to donated VM time from
@@ -114,8 +119,8 @@ Here's our Sauce Labs [build matrix][sauce_site]:
 [![Sauce Test Status][sauce_img]][sauce_site]
 
 [sauce]: https://saucelabs.com
-[sauce_img]: https://saucelabs.com/browser-matrix/rowdy.svg
-[sauce_site]: https://saucelabs.com/u/rowdy
+[sauce_img]: https://saucelabs.com/browser-matrix/rowdio.svg
+[sauce_site]: https://saucelabs.com/u/rowdio
 [bs]: http://www.browserstack.com/
 
 ## Licenses
