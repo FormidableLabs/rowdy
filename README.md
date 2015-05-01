@@ -8,7 +8,6 @@ Main features:
 
 * Easy configuration for local, Sauce Labs, Browser Stack testing.
 * Invokes selenium server for local runs automagically.
-* Integration helpers for Mocha tests.
 * Use your own test framework and test runner.
 
 Related projects:

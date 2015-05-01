@@ -107,11 +107,3 @@ rowdio.teardownClient = function (client, callback) {
 rowdio.adapters = {
   mocha: require("./adapters/mocha")
 };
-
-/**
- * Helpers.
- */
-rowdio.helpers = {
-  js: require("./helpers/js")
-};
-

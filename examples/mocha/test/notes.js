@@ -3,7 +3,6 @@
  */
 var asserters = require("wd").asserters;
 var rowdio = require("../../../index");
-var jsFn = rowdio.helpers.js.fn;
 var adapter = rowdio.adapters.mocha;
 
 describe("notes", function () {
@@ -26,10 +25,10 @@ describe("notes", function () {
       // Delete a note
       .waitForElementByCss(".notes-item .note-delete")
       .click()
-      .waitFor(asserters.jsCondition(jsFn(function () {
+      .waitFor(asserters.jsCondition(function () {
         /*global $*/
         return $(".notes-item .note-delete").length === 0;
-      })))
+      }))
 
       .nodeify(done);
   });
