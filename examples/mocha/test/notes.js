@@ -1,13 +1,12 @@
 /**
  * Example tests.
  */
-var asserters = require("wd").asserters;
 var rowdio = require("../../../index");
 var adapter = rowdio.adapters.mocha;
 
 describe("notes", function () {
 
-  it("adds a note and deletes it", function (done) {
+  it.skip("adds a note and deletes it", function (done) {
     adapter.client
       .get("http://backbone-testing.com/notes/app/")
 
@@ -30,10 +29,10 @@ describe("notes", function () {
         return $(".notes-item .note-delete").length === 0;
       }))
 
-      .nodeify(done);
+      .call(done);
   });
 
-  it("adds a note and edits it", function (done) {
+  it.skip("adds a note and edits it", function (done) {
     adapter.client
       .get("http://backbone-testing.com/notes/app/")
 
@@ -61,7 +60,7 @@ describe("notes", function () {
         expect(val).to.equal("Edit Test");
       })
 
-      .nodeify(done);
+      .call(done);
   });
 });
 

@@ -71,7 +71,7 @@ rowdio.setupClient = function (callback) {
 
   client
     .init(caps)
-    .nodeify(function (err) {
+    .call(function (err) {
       if (err) { Client.LOG("[error]".red, err.toString().trim()); }
       callback(err, client);
     });
@@ -96,9 +96,7 @@ rowdio.teardownServer = function (server, callback) {
  * Tear down WD client and other state.
  */
 rowdio.teardownClient = function (client, callback) {
-  client
-    .quit()
-    .nodeify(callback);
+  client.end(callback);
 };
 
 /**

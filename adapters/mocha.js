@@ -76,7 +76,7 @@ var adapter = module.exports = {
             passed: allPassed && attempted === finished,
             public: true
           })
-          .end(done);
+          .call(done);
       }
 
       // Default.
