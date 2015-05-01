@@ -16,6 +16,16 @@ Related projects:
 * [rowdy](https://github.com/FormidableLabs/rowdy): Wrapper for
   [WD.js](https://github.com/admc/wd).
 
+## TODO
+
+* Remove client logs b/c https://github.com/webdriverio/webdriverio#coloredlogs
+* Port over the client
+* Verify options are the same
+* Get mocha adapter working
+* Get mocha tests working
+* Try multi-browsers functionality.
+* Add new saucelabs sub-account.
+
 ## Basic Usage
 
 First, install the library.
@@ -92,10 +102,10 @@ VM, the only actually tweak needed was:
 * [examples/mocha](./examples/mocha): Basic Mocha/Chai tests using WD promises
   and the [Rowdio Mocha Adapter](./adapters/mocha.js)
 
-## WD Guide
+## WebdriverIO Guide
 
-The full API to WD.js is available at:
-https://github.com/admc/wd/blob/master/doc/api.md
+The full API to WebdriverIO is available at:
+http://webdriver.io/api.html
 
 ## Contributions
 

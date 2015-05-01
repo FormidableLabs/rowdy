@@ -93,7 +93,7 @@ var adapter = module.exports = {
 };
 
 /**
- * Return configured WD.js client.
+ * Return configured WebdriverIO client.
  *
  * **Note**: `adapter.before()` **must** be called before accessing this
  * property.
