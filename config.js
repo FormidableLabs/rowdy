@@ -196,10 +196,10 @@ module.exports = {
           build: BUILD
         },
         remote: {
-          hostname: "hub.browserstack.com",
+          host: "hub.browserstack.com",
           port: 80,
           user: process.env.BROWSER_STACK_USERNAME,
-          pwd: process.env.BROWSER_STACK_ACCESS_KEY
+          key: process.env.BROWSER_STACK_ACCESS_KEY
         },
         // Custom indicator of vendor service.
         isBrowserStack: true

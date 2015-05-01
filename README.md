@@ -18,12 +18,9 @@ Related projects:
 ## TODO
 
 * Remove client logs b/c https://github.com/webdriverio/webdriverio#coloredlogs
-* Port over the client
-* Verify options are the same
-* Get mocha adapter working
-* Get mocha tests working
 * Try multi-browsers functionality.
 * Add new saucelabs sub-account.
+* Decide if going with new project or integrate _both_ libs here.
 
 ## Basic Usage
 
