@@ -25,31 +25,28 @@ describe("notes", function () {
       .call(done);
   });
 
-  it.skip("adds a note and edits it", function (done) {
+  it("adds a note and edits it", function (done) {
     adapter.client
-      .get("http://backbone-testing.com/notes/app/")
+      .url("http://backbone-testing.com/notes/app/")
 
       // Create a note.
-      .waitForElementByCss("input#note-new-input")
-      .type("Edit Test")
-      .waitForElementByCss("button#note-create")
-      .click()
-      .waitForElementByCss(".notes-item .note-title")
-      .text()
-      .then(function (text) {
+      .setValue("input#note-new-input", "Edit Test")
+      .click("button#note-create")
+      .getText(".notes-item .note-title", function (err, text) {
+        if (err) { return done(err); }
         expect(text).to.equal("Edit Test");
       })
 
+
       // Edit the note.
-      .waitForElementByCss(".notes-item .note-edit")
-      .click()
-      .url()
-      .then(function (url) {
+      .click(".notes-item .note-edit")
+      .url(function (err, res) {
+        if (err) { return done(err); }
+        var url = res.value;
         expect(url).to.match(/\/notes\/app\/#note\/.*\/edit/);
       })
-      .waitForElementByCss("#input-title")
-      .getValue()
-      .then(function (val) {
+      .getValue("#input-title", function (err, val) {
+        if (err) { return done(err); }
         expect(val).to.equal("Edit Test");
       })
 
