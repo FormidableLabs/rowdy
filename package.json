@@ -4,29 +4,31 @@
   "description": "WD.js configuration wrapper.",
   "main": "index.js",
   "dependencies": {
-    "colors": "0.6.2",
-    "lodash": "2.4.1"
+    "colors": "1.1.0",
+    "lodash": "3.8.0"
   },
   "peerDependencies": {
     "selenium-standalone": ">=3.0.0",
     "wd": "*"
   },
   "devDependencies": {
-    "chai": "1.9.1",
-    "gulp": "3.8.7",
-    "gulp-jshint": "1.8.4",
-    "mocha": "1.21.4",
-    "phantomjs": "1.9.9",
-    "selenium-standalone": "4.2.2",
-    "wd": "0.3.11"
+    "chai": "^2.3.0",
+    "eslint": "^0.20.0",
+    "mocha": "^2.2.4",
+    "phantomjs": "^1.9.16",
+    "selenium-standalone": "^4.4.0",
+    "wd": "^0.3.11"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/FormidableLabs/rowdy"
   },
   "keywords": [
-    "functional",
-    "test"
+    "functional test",
+    "integration test",
+    "test",
+    "selenium",
+    "mocha"
   ],
   "author": "Ryan Roemer <ryan.roemer@formidablelabs.com>",
   "license": "MIT",
@@ -34,9 +36,12 @@
     "url": "https://github.com/FormidableLabs/rowdy/issues"
   },
   "scripts": {
-    "test": "npm run-script test-default-config && npm run-script test-manual-config",
+    "lint": "eslint .",
+    "check": "npm run lint",
+    "check-all": "npm run lint && npm run test",
+    "test": "npm run test-default-config && npm run test-manual-config",
     "test-default-config": "cd examples/mocha && mocha",
     "test-manual-config": "cd examples/mocha && mocha --require ./setup-manual-config",
-    "sel-install": "selenium-standalone install"
+    "install-selenium": "selenium-standalone install"
   }
 }

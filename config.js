@@ -23,7 +23,9 @@
 var PHANTOM_PATH = false;
 try {
   PHANTOM_PATH = require("phantomjs").path;
-} catch (err) {}
+} catch (err) {
+  // Leave false.
+}
 
 // Travis
 var BUILD = process.env.TRAVIS_BUILD_NUMBER ?
@@ -204,7 +206,7 @@ module.exports = {
         // Custom indicator of vendor service.
         isBrowserStack: true
       },
-      /*jshint camelcase:false*/
+      /*eslint-disable camelcase*/
       "safari-mac": {
         desiredCapabilities: {
           browserName: "safari",
@@ -219,7 +221,7 @@ module.exports = {
           os_version: "7"
         }
       }
-      /*jshint camelcase:true*/
-    },
+      /*eslint-enable camelcase*/
+    }
   }
 };
