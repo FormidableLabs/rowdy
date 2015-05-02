@@ -1,7 +1,6 @@
 /**
  * Mocha setup.
  */
-/*globals chai:true */
 var chai = require("chai");
 
 // Globals.

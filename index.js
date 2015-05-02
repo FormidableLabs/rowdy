@@ -45,6 +45,9 @@ Object.defineProperty(rowdy, "setting", {
  * rowdy.setupServer()
  *
  * Set up new Selenium server and other state.
+ *
+ * @param {Function} callback Callback `fn(err, server)` when started
+ * @returns {void}
  */
 rowdy.setupServer = function (callback) {
   var server = new Server(rowdy.config);
@@ -52,7 +55,7 @@ rowdy.setupServer = function (callback) {
   // Start selenium and wait until ready.
   if ((rowdy.setting.server || {}).start) {
     return server.start(function (err) {
-      if (err) { Server.LOG("[error]".red, err.toString().trim()); }
+      if (err) { Server.log("[error]".red, err.toString().trim()); }
       callback(err, server);
     });
   }
@@ -64,6 +67,8 @@ rowdy.setupServer = function (callback) {
  * rowdy.setupClient()
  *
  * Set up a new WD client and other state.
+ *
+ * @param {Function} callback Callback `fn(err, client)` when started
  */
 rowdy.setupClient = function (callback) {
   var client = (new Client(rowdy.config, rowdy.setting)).client;
@@ -72,7 +77,7 @@ rowdy.setupClient = function (callback) {
   client
     .init(caps)
     .nodeify(function (err) {
-      if (err) { Client.LOG("[error]".red, err.toString().trim()); }
+      if (err) { Client.log("[error]".red, err.toString().trim()); }
       callback(err, client);
     });
 };
@@ -81,6 +86,10 @@ rowdy.setupClient = function (callback) {
  * rowdy.teardownClient()
  *
  * Tear down Selenium server and other state.
+ *
+ * @param {Object} server Server object
+ * @param {Function} callback Callback `fn(err)` when stopped
+ * @returns {void}
  */
 rowdy.teardownServer = function (server, callback) {
   if ((rowdy.setting.server || {}).start) {
@@ -94,6 +103,9 @@ rowdy.teardownServer = function (server, callback) {
  * rowdy.teardownClient()
  *
  * Tear down WD client and other state.
+ *
+ * @param {Object} client Client object
+ * @param {Function} callback Callback `fn(err)` when stopped
  */
 rowdy.teardownClient = function (client, callback) {
   client

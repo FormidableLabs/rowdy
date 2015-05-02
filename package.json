@@ -35,6 +35,7 @@
   "scripts": {
     "lint": "eslint .",
     "check": "npm run lint",
+    "check-all": "npm run lint && npm run test",
     "test": "npm run test-default-config && npm run test-manual-config",
     "test-default-config": "cd examples/mocha && mocha",
     "test-manual-config": "cd examples/mocha && mocha --require ./setup-manual-config",

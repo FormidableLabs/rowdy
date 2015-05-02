@@ -16,6 +16,9 @@ module.exports = {
    *   return $(".notes-item .note-delete").length === 0;
    * })))
    * ```
+   *
+   * @param   {Function} fn Function to stringify
+   * @returns {String}      Stringified, IIFE-wrapped function
    */
   fn: function (fn) {
     return "(" + fn.toString() + "())";
