@@ -13,8 +13,7 @@
   },
   "devDependencies": {
     "chai": "1.9.1",
-    "gulp": "3.8.7",
-    "gulp-jshint": "1.8.4",
+    "eslint": "^0.20.0",
     "mocha": "1.21.4",
     "phantomjs": "1.9.9",
     "selenium-standalone": "4.2.2",
@@ -34,7 +33,9 @@
     "url": "https://github.com/FormidableLabs/rowdy/issues"
   },
   "scripts": {
-    "test": "npm run-script test-default-config && npm run-script test-manual-config",
+    "lint": "eslint .",
+    "check": "npm run lint",
+    "test": "npm run test-default-config && npm run test-manual-config",
     "test-default-config": "cd examples/mocha && mocha",
     "test-manual-config": "cd examples/mocha && mocha --require ./setup-manual-config",
     "sel-install": "selenium-standalone install"
