@@ -40,5 +40,5 @@ env:
 
 script:
   # Run the "check" script only once.
-  - 'if [ "$ROWDY_CHECK" ]; then npm run check'
+  - 'if [ "$ROWDY_CHECK" ]; then npm run check; else true; fi'
   - '[ "$ROWDY_CHECK" ] || npm test'
