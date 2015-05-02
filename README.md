@@ -19,6 +19,16 @@ First, install the library.
 $ npm install rowdy
 ```
 
+For using local tests / development in this repo, download the local
+selenium drivers with:
+
+```
+$ npm run install-selenium
+```
+
+This shells out to `selenium-standalone` and is necessary at some point in your
+integration if using the standalone (local) server.
+
 ## Configuration
 
 By default Rowdy will lazy initialize the library's included

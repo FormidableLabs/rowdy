@@ -38,6 +38,10 @@ env:
     - ROWDY_SETTINGS="browserStack.safari-mac"
     - ROWDY_SETTINGS="browserStack.chrome-win7"
 
+before_script:
+  # Download selenium drivers.
+  - npm run install-selenium
+
 script:
   # Run the "check" script only once.
   - 'if [ "$ROWDY_CHECK" ]; then npm run check; else true; fi'

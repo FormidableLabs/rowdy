@@ -42,6 +42,6 @@
     "test": "npm run test-default-config && npm run test-manual-config",
     "test-default-config": "cd examples/mocha && mocha",
     "test-manual-config": "cd examples/mocha && mocha --require ./setup-manual-config",
-    "sel-install": "selenium-standalone install"
+    "install-selenium": "selenium-standalone install"
   }
 }
