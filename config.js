@@ -48,13 +48,16 @@ module.exports = {
    * Options can be globally overriden with a merge of a stringified JSON
    * object like:
    * ```
-   * ROWDY_OPTIONS='{ clientLogger: true }'
+   * ROWDY_OPTIONS='{ "clientLogger": true, "serverLogger": true }'
+   * ROWDY_OPTIONS='{ "driverLib": "wd" }'
+   * ROWDY_OPTIONS='{ "driverLib": "webdriverio" }'
    * ```
    */
   options: {
     clientLogger: false,
     serverLogger: false,
-    serverDebug: false
+    serverDebug: false,
+    driverLib: "wd" // "wd" or "webdriverio"
   },
 
   /**

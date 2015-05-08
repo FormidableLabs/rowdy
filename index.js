@@ -8,6 +8,7 @@ var clientWrapper = require("./lib/client");
 // Stashed, singleton configuration.
 var _config;
 
+// TODO: (1) instances!, (2) add overrides via `(cfg, overrides)`
 var rowdy = module.exports = function (cfg) {
   _config = config(cfg);
   return rowdy;

@@ -2,7 +2,8 @@ roWDy
 =====
 
 A small, rambuctious configuration wrapper for
-[WD.js](https://github.com/admc/wd).
+[WD.js](https://github.com/admc/wd) or
+[WebdriverIO](http://webdriver.io/)
 
 Main features:
 
@@ -16,7 +17,7 @@ Main features:
 First, install the library.
 
 ```
-$ npm install rowdy
+$ npm install --save-dev rowdy
 ```
 
 For using local tests / development in this repo, download the local
@@ -28,6 +29,27 @@ $ npm run install-selenium
 
 This shells out to `selenium-standalone` and is necessary at some point in your
 integration if using the standalone (local) server.
+
+Then, install the necessary client libraries. (_Note_: to make the underying
+webdriver client flexible, we've removed `peerDependencies` on WD or
+WebdriverIO, instead relying on user to manage).
+
+**WD.js**:
+
+```
+$ npm install --save-dev wd
+```
+
+**WebdriverIO**:
+
+```
+$ npm install --save-dev webdriverio saucelabs
+```
+
+_Note_: If using SauceLabs + WebdriverIO, we lazy `require` the Sauce Labs
+module to upload results of "done" to your SL account.
+
+`TODO: Maybe add saucelabs as real dep and route everything through that?`
 
 ## Configuration
 
@@ -97,10 +119,19 @@ VM, the only actually tweak needed was:
 * [examples/mocha](./examples/mocha): Basic Mocha/Chai tests using WD promises
   and the [Rowdy Mocha Adapter](./adapters/mocha.js)
 
-## WD Guide
+## Webdriver Client Guides
+
+### WD.js
 
 The full API to WD.js is available at:
 https://github.com/admc/wd/blob/master/doc/api.md
+
+### WebdriverIO
+
+WebdriverIO provides the following useful documentation:
+
+* http://webdriver.io/guide.html
+* http://webdriver.io/api.html
 
 ## Contributions
 
@@ -112,22 +143,21 @@ We test all changes with [Travis CI][trav]. Here's our current
 
 [![Build Status][trav_img]][trav_site]
 
-[trav]: https://travis-ci.org/
-[trav_img]: https://travis-ci.org/FormidableLabs/rowdy.svg
-[trav_site]: https://travis-ci.org/FormidableLabs/rowdy
-[trav_cfg]: ./.travis.yml
-
 We also do multi-browser testing thanks to donated VM time from
 [Sauce Labs][sauce] and [BrowserStack][bs].
 Here's our Sauce Labs [build matrix][sauce_site]:
 
 [![Sauce Test Status][sauce_img]][sauce_site]
 
+## Licenses
+All code not otherwise specified is Copyright Formidable Labs, Inc.
+Released under the [MIT](./LICENSE.txt) License.
+
+[trav]: https://travis-ci.org/
+[trav_img]: https://travis-ci.org/FormidableLabs/rowdy.svg
+[trav_site]: https://travis-ci.org/FormidableLabs/rowdy
+[trav_cfg]: ./.travis.yml
 [sauce]: https://saucelabs.com
 [sauce_img]: https://saucelabs.com/browser-matrix/rowdy.svg
 [sauce_site]: https://saucelabs.com/u/rowdy
 [bs]: http://www.browserstack.com/
-
-## Licenses
-All code not otherwise specified is Copyright 2014 Formidable Labs, Inc.
-Released under the [MIT](./LICENSE.txt) License.
