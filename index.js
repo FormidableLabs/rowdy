@@ -2,8 +2,8 @@
  * Rowdy.
  */
 var config = require("./lib/config");
-var Client = require("./lib/client");
 var Server = require("./lib/server");
+var clientWrapper = require("./lib/client");
 
 // Stashed, singleton configuration.
 var _config;
@@ -71,13 +71,13 @@ rowdy.setupServer = function (callback) {
  * @param {Function} callback Callback `fn(err, client)` when started
  */
 rowdy.setupClient = function (callback) {
-  var client = (new Client(rowdy.config, rowdy.setting)).client;
+  var client = clientWrapper.create(rowdy.config).client;
   var caps = rowdy.setting.desiredCapabilities;
 
   client
     .init(caps)
     .nodeify(function (err) {
-      if (err) { Client.log("[error]".red, err.toString().trim()); }
+      if (err) { client.log("[error]".red, err.toString().trim()); }
       callback(err, client);
     });
 };
