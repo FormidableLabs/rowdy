@@ -5,12 +5,11 @@
 var asserters = require("wd").asserters;
 var rowdy = require("../../../index");
 var jsFn = rowdy.helpers.js.fn;
-var adapter = rowdy.adapters.mocha;
 
 describe("notes", function () {
 
   it("adds a note and deletes it", function (done) {
-    adapter.client
+    global.clientAdapter.client
       .get("http://backbone-testing.com/notes/app/")
 
       // Create a note.
@@ -36,7 +35,7 @@ describe("notes", function () {
   });
 
   it("adds a note and edits it", function (done) {
-    adapter.client
+    global.clientAdapter.client
       .get("http://backbone-testing.com/notes/app/")
 
       // Create a note.
