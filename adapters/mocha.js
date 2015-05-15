@@ -119,7 +119,7 @@ Client.prototype.beforeEach = function () {
 Client.prototype.afterEach = function () {
   var self = this;
 
-  beforeEach(function () {
+  afterEach(function () {
     self._passed += this.currentTest.state === "passed" ? 1 : 0;
     self._finished++;
   });
