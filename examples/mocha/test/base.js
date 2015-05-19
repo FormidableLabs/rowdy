@@ -28,7 +28,6 @@ before(function (done) {
     .nodeify(done);
 });
 
-
 client.afterEach();
 server.afterEach();
 
