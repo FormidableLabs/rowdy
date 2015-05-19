@@ -23,11 +23,10 @@ Object.defineProperty(Client.prototype, "client", {
 });
 
 Client.prototype.before = function () {
-  var rowdy = require("../../index");
   var self = this;
 
   before(function (done) {
-    rowdy.setupClient(function (err, client) {
+    self.rowdy.setupClient(function (err, client) {
       if (err) { return done(err); }
       self._client = client;
       done();
@@ -53,7 +52,6 @@ Client.prototype.afterEach = function () {
 };
 
 Client.prototype.after = function () {
-  var rowdy = require("../../index");
   var self = this;
 
   // Handle SauceLabs accumulation.
@@ -74,6 +72,6 @@ Client.prototype.after = function () {
   // Teardown client.
   after(function (done) {
     if (!self._client) { return done(); }
-    rowdy.teardownClient(self._client, done);
+    self.rowdy.teardownClient(self._client, done);
   });
 };

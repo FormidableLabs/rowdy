@@ -13,7 +13,6 @@ var Server = module.exports = function () {
 inherits(Server, Base);
 
 Server.prototype.before = function () {
-  var rowdy = require("../../index");
   var self = this;
 
   before(function (done) {
@@ -22,7 +21,7 @@ Server.prototype.before = function () {
       return done();
     }
 
-    rowdy.setupServer(function (err, server) {
+    self.rowdy.setupServer(function (err, server) {
       if (err) { return done(err); }
       self.server = server;
       done();
@@ -31,11 +30,10 @@ Server.prototype.before = function () {
 };
 
 Server.prototype.after = function () {
-  var rowdy = require("../../index");
   var self = this;
 
   after(function (done) {
     if (!self.server) { return done(); }
-    rowdy.teardownServer(self.server, done);
+    self.rowdy.teardownServer(self.server, done);
   });
 };

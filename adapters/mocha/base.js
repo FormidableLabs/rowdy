@@ -13,3 +13,10 @@ Base.prototype = {
   afterEach: function () {},
   after: function () {}
 };
+
+// Expose lazy-required `rowdy` base client (to get around circular deps).
+Object.defineProperty(Base.prototype, "rowdy", {
+  get: function () {
+    return require("../../index");
+  }
+});
