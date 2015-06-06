@@ -3,28 +3,22 @@
  */
 var adapter = global.adapter;
 
-// Globals
+// Global wait.
 var ELEM_WAIT = 200;
 
 adapter.before();
+adapter.beforeEach();
 
-before(function (done) {
+beforeEach(function (done) {
+  // **Note**: Could move to `before` if "per suite" (not test) client.
   adapter.client
-    // Global wait.
     .setImplicitWaitTimeout(ELEM_WAIT)
-
-    // Get the page a first time so that we can set LS.
-    .get("http://backbone-testing.com/notes/app/")
-    .clearLocalStorage()
-
     .nodeify(done);
 });
 
-adapter.beforeEach();
-
-adapter.afterEach();
-
 afterEach(function (done) {
+  // **Note**: Not needed for "per test" client configuration.
+
   // Clear all LS to start from scratch.
   // Note: Should come *after* not before browser window / session begins.
   // See: http://stackoverflow.com/questions/21259235
@@ -33,4 +27,5 @@ afterEach(function (done) {
     .nodeify(done);
 });
 
+adapter.afterEach();
 adapter.after();

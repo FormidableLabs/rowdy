@@ -41,9 +41,10 @@
     "lint": "eslint .",
     "check": "npm run lint",
     "check-all": "npm run lint && npm run test",
-    "test": "npm run test-default-config && npm run test-manual-config",
+    "test": "npm run test-default-config && npm run test-manual-config && npm run test-per-test-client",
     "test-default-config": "cd examples/mocha && mocha",
     "test-manual-config": "cd examples/mocha && mocha --require ./setup-manual-config",
+    "test-per-test-client": "cd examples/mocha && mocha --require ./setup-per-test-client",
     "install-selenium": "selenium-standalone install"
   }
 }
