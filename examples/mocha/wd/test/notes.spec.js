@@ -2,8 +2,6 @@
  * Example tests.
  */
 var adapter = global.adapter;
-
-// TODO: Needs lazy require for `wd`.
 var asserters = require("wd").asserters;
 var rowdy = require("../../../../index");
 var jsFn = rowdy.helpers.js.fn;

@@ -31,7 +31,7 @@ This shells out to `selenium-standalone` and is necessary at some point in your
 integration if using the standalone (local) server.
 
 Then, install the necessary client libraries. (_Note_: to make the underying
-webdriver client flexible, we've removed `peerDependencies` on WD or
+webdriver client flexible, we've removed `peerDependencies` on wd or
 WebdriverIO, instead relying on user to manage).
 
 **WD.js**:
@@ -116,8 +116,8 @@ VM, the only actually tweak needed was:
 
 ### Examples:
 
-* [examples/mocha](./examples/mocha): Basic Mocha/Chai tests using the
-  [Rowdy Mocha Adapter](./adapters/mocha.js)
+* [examples/mocha/wd](./examples/mocha/wd): Basic Mocha/Chai tests using the
+  [Rowdy Mocha Adapter](./adapters/mocha.js) with WD.js
 
 ## Webdriver Client Guides
 
