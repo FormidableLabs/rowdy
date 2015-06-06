@@ -116,8 +116,8 @@ VM, the only actually tweak needed was:
 
 ### Examples:
 
-* [examples/mocha](./examples/mocha): Basic Mocha/Chai tests using WD promises
-  and the [Rowdy Mocha Adapter](./adapters/mocha.js)
+* [examples/mocha](./examples/mocha): Basic Mocha/Chai tests using the
+  [Rowdy Mocha Adapter](./adapters/mocha.js)
 
 ## Webdriver Client Guides
 
