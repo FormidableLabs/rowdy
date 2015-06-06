@@ -4,7 +4,6 @@ var inherits = require("util").inherits;
 /**
  * Server adapter.
  *
- * @param {Object} config       Rowdy configuration object.
  * @param {Object} adapterCfg   Specific configurations for adapter.
  */
 var Server = module.exports = function () {

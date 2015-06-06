@@ -22,9 +22,15 @@ var Client = require("./mocha/client");
 var Server = require("./mocha/server");
 var inherits = require("util").inherits;
 
-var MochaAdapter = module.exports = function (config, overrides) {
-  this._client = new Client(config, overrides);
-  this._server = new Server(config, overrides);
+/**
+ * Mocha Adapter.
+ *
+ * @param {Object}  adapterCfg                Adapter configurations.
+ * @param {Boolean} adapterCfg.client.perTest New `client` per *each* test?
+ */
+var MochaAdapter = module.exports = function (adapterCfg) {
+  this._client = new Client(adapterCfg);
+  this._server = new Server(adapterCfg);
 };
 
 inherits(MochaAdapter, Base);

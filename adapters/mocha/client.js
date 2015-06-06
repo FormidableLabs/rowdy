@@ -4,7 +4,6 @@ var inherits = require("util").inherits;
 /**
  * Client adapter.
  *
- * @param {Object}  config              Rowdy configuration object.
  * @param {Object}  adapterCfg          Specific configurations for adapter.
  * @param {Boolean} adapterCfg.perTest  New `client` per *each* test? (`false`)
  */
