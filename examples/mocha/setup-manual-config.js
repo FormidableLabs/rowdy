@@ -1,6 +1,11 @@
 /**
  * Additional configuration -- explicit Rowdy configuration.
  */
+var _ = require("lodash");
 var rowdy = require("../../index");
 var config = require("../../config");
-rowdy(config);
+rowdy(_.extend({}, config, {
+  options: {
+    driverLib: "wd"
+  }
+}));
