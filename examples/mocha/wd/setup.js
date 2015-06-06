@@ -2,7 +2,7 @@
  * Mocha setup.
  */
 var chai = require("chai");
-var Adapter = require("../../index").adapters.mocha;
+var Adapter = require("../../../index").adapters.mocha;
 
 // Globals.
 global.expect = chai.expect;
