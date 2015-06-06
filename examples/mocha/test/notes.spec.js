@@ -1,6 +1,8 @@
 /**
  * Example tests.
  */
+var adapter = global.adapter;
+
 // TODO: Needs lazy require for `wd`.
 var asserters = require("wd").asserters;
 var rowdy = require("../../../index");
@@ -9,7 +11,7 @@ var jsFn = rowdy.helpers.js.fn;
 describe("notes", function () {
 
   it("adds a note and deletes it", function (done) {
-    global.clientAdapter.client
+    adapter.client
       .get("http://backbone-testing.com/notes/app/")
 
       // Create a note.
@@ -35,7 +37,7 @@ describe("notes", function () {
   });
 
   it("adds a note and edits it", function (done) {
-    global.clientAdapter.client
+    adapter.client
       .get("http://backbone-testing.com/notes/app/")
 
       // Create a note.

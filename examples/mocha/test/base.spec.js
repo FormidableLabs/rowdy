@@ -1,23 +1,15 @@
 /**
  * Global setup / teardown.
  */
-var adapter = require("../../../index").adapters.mocha;
-
-var server = global.serverAdapter = new adapter.Server();
-var client = global.clientAdapter = new adapter.Client();
+var adapter = global.adapter;
 
 // Globals
 var ELEM_WAIT = 200;
 
-server.before();
-client.before();
+adapter.before();
 
-server.beforeEach();
-client.beforeEach();
-
-// Set our custom
 before(function (done) {
-  global.clientAdapter.client
+  adapter.client
     // Global wait.
     .setImplicitWaitTimeout(ELEM_WAIT)
 
@@ -28,18 +20,17 @@ before(function (done) {
     .nodeify(done);
 });
 
+adapter.beforeEach();
 
-client.afterEach();
-server.afterEach();
+adapter.afterEach();
 
 afterEach(function (done) {
   // Clear all LS to start from scratch.
   // Note: Should come *after* not before browser window / session begins.
   // See: http://stackoverflow.com/questions/21259235
-  global.clientAdapter.client
+  adapter.client
     .clearLocalStorage()
     .nodeify(done);
 });
 
-client.after();
-server.after();
+adapter.after();
