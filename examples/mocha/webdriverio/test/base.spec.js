@@ -12,18 +12,17 @@ adapter.beforeEach();
 beforeEach(function (done) {
   // **Note**: Could move to `before` if "per suite" (not test) client.
   adapter.client
-    // TODO .setImplicitWaitTimeout(ELEM_WAIT)
-    .call(done);
-});
+    // Set timeout for waiting on elements.
+    .timeoutsImplicitWait(ELEM_WAIT)
 
-afterEach(function (done) {
-  // **Note**: Not needed for "per test" client configuration.
+    // Nuke any existing local storage (manually with JS b/c PhantomJS errors
+    // for native `.localStorage("DELETE")` call).
+    .url("http://backbone-testing.com/notes/app/")
+    .execute(function () {
+      /*globals window:false*/
+      if (window.localStorage) { window.localStorage.clear(); }
+    })
 
-  // Clear all LS to start from scratch.
-  // Note: Should come *after* not before browser window / session begins.
-  // See: http://stackoverflow.com/questions/21259235
-  adapter.client
-    // TODO .clearLocalStorage()
     .call(done);
 });
 
