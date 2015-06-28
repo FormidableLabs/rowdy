@@ -41,6 +41,18 @@ Object.defineProperty(MochaAdapter.prototype, "client", {
   }
 });
 
+/**
+ * Teardown existing Selenium client and create new one.
+ *
+ * New client is available via `MochaAdapter.prototype.client`.
+ *
+ * @param {Function} callback Callback `fn(err)`
+ * @returns {void}
+ */
+MochaAdapter.prototype.refreshClient = function (callback) {
+  this._client.refreshClient(callback);
+};
+
 MochaAdapter.prototype.before = function () {
   this._server.before();
   this._client.before();

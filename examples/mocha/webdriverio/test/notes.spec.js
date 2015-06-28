@@ -51,5 +51,29 @@ describe("notes - webdriverio", function () {
 
       .call(done);
   });
-});
 
+  /*
+   * As an alternative to `perTest: true` global configurations, clients can
+   * instead generally rely on a per-suite client and conditionally call
+   * `refreshClient` to get a new client.
+   */
+  describe("with refreshed (new) client", function () {
+
+    beforeEach(function (done) {
+      adapter.refreshClient(done);
+    });
+
+    it("checks the nav heading", function (done) {
+      adapter.client
+        .url("http://backbone-testing.com/notes/app/")
+
+        // Check nav heading
+        .getText(".navbar-brand", function (err, text) {
+          if (err) { return done(err); }
+          expect(text).to.equal("Notes");
+        })
+
+        .call(done);
+    });
+  });
+});

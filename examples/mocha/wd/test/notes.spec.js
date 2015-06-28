@@ -64,5 +64,30 @@ describe("notes - wd.js", function () {
 
       .nodeify(done);
   });
-});
 
+  /*
+   * As an alternative to `perTest: true` global configurations, clients can
+   * instead generally rely on a per-suite client and conditionally call
+   * `refreshClient` to get a new client.
+   */
+  describe("with refreshed (new) client", function () {
+
+    beforeEach(function (done) {
+      adapter.refreshClient(done);
+    });
+
+    it("checks the nav heading", function (done) {
+      adapter.client
+        .get("http://backbone-testing.com/notes/app/")
+
+        // Check nav heading
+        .waitForElementByCss(".navbar-brand")
+        .text()
+        .then(function (text) {
+          expect(text).to.equal("Notes");
+        })
+
+        .nodeify(done);
+    });
+  });
+});

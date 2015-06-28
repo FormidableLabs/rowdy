@@ -36,23 +36,30 @@ Object.defineProperty(Client.prototype, "client", {
   }
 });
 
-Client.prototype._setupClient = function (done) {
+Client.prototype._setupClient = function (callback) {
   var rowdy = require("../../index");
   var self = this;
 
   rowdy.setupClient(function (err, client) {
-    if (err) { return done(err); }
+    if (err) { return callback(err); }
     self._client = client;
-    done();
+    callback();
   });
 };
 
-Client.prototype._teardownClient = function (done) {
+Client.prototype._teardownClient = function (callback) {
   var rowdy = require("../../index");
 
-  if (!this._client) { return done(); }
+  if (!this._client) { return callback(); }
 
-  rowdy.teardownClient(this._client, done);
+  rowdy.teardownClient(this._client, callback);
+};
+
+Client.prototype.refreshClient = function (callback) {
+  this._teardownClient(function (err) {
+    if (err) { return callback(err); }
+    this._setupClient(callback);
+  }.bind(this));
 };
 
 Client.prototype.before = function () {
