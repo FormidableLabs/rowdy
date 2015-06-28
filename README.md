@@ -10,9 +10,11 @@ Main features:
 * Easy configuration for local, Sauce Labs, Browser Stack testing.
 * Invokes selenium server for local runs automagically.
 * Integration helpers for Mocha tests.
+* Auto-magic setting of Sauce Labs test status.
 * Use your own test framework and test runner.
 
-## Basic Usage
+
+## Installation
 
 First, install the library.
 
@@ -49,7 +51,6 @@ $ npm install --save-dev webdriverio saucelabs
 _Note_: If using SauceLabs + WebdriverIO, we lazy `require` the Sauce Labs
 module to upload results of "done" to your SL account.
 
-`TODO: Maybe add saucelabs as real dep and route everything through that?`
 
 ## Configuration
 
@@ -77,6 +78,7 @@ as appropriate and load:
 var config = require("./PATH/TO/config");
 var rowdy = require("rowdy")(config);
 ```
+
 
 ## Local Usage
 
@@ -110,14 +112,22 @@ VM, the only actually tweak needed was:
   `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE`
   and add DWORD of `iexplore.exe` defaulted to `0` value.
 
+
 ## API
 
 **TODO**: API is still settling out.
 
-### Examples:
+### Mocha Adapter
 
-* [examples/mocha/wd](./examples/mocha/wd): Basic Mocha/Chai tests using the
-  [Rowdy Mocha Adapter](./adapters/mocha.js) with WD.js
+We provide full working examples of the [Mocha Adapter](./adapters/mocha.js):
+
+* [examples/mocha/wd](./examples/mocha/wd): Basic Mocha/Chai tests with WD.js
+* [examples/mocha/webdriverio](./examples/mocha/webdriverio): The same
+  Mocha/Chai tests with WebdriverIO.
+
+**TODO**: Add a full guide for configuring the adapter and (1) the options,
+(2) `adapter.refreshClient()` use, (3) `adapter.client` use.
+
 
 ## Webdriver Client Guides
 
@@ -132,6 +142,7 @@ WebdriverIO provides the following useful documentation:
 
 * http://webdriver.io/guide.html
 * http://webdriver.io/api.html
+
 
 ## Contributions
 
@@ -148,6 +159,7 @@ We also do multi-browser testing thanks to donated VM time from
 Here's our Sauce Labs [build matrix][sauce_site]:
 
 [![Sauce Test Status][sauce_img]][sauce_site]
+
 
 ## Licenses
 All code not otherwise specified is Copyright Formidable Labs, Inc.
