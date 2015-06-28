@@ -28,11 +28,13 @@ inherits(Client, Base);
 
 Object.defineProperty(Client.prototype, "client", {
   /**
-   * Return selenium client.
+   * Return Selenium client.
+   *
+   * @returns {Object} Underlying Selenium client instance.
    */
   get: function () {
     if (!this._client) { throw new Error("Client is unset"); }
-    return this._client.selClient
+    return this._client.selClient;
   }
 });
 

@@ -76,7 +76,7 @@ rowdy.setupClient = function (callback) {
   client.init(null, function (err) {
     if (err) { client.log("[error]".red, err.toString().trim()); }
     callback(err, client);
-  })
+  });
 };
 
 /**
