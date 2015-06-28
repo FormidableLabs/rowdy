@@ -6,7 +6,7 @@ var asserters = require("wd").asserters;
 var rowdy = require("../../../../index");
 var jsFn = rowdy.helpers.js.fn;
 
-describe("notes", function () {
+describe("notes - wd.js", function () {
 
   it("adds a note and deletes it", function (done) {
     adapter.client

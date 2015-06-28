@@ -41,11 +41,14 @@
     "lint": "eslint .",
     "check": "npm run lint",
     "check-all": "npm run lint && npm run test",
-    "test": "npm run test-wd",
+    "test": "npm run test-wd && npm run test-webdriverio",
     "test-wd": "npm run test-wd-default-config && npm run test-wd-manual-config && npm run test-wd-per-test-client",
     "test-wd-default-config": "cd examples/mocha/wd && mocha",
     "test-wd-manual-config": "cd examples/mocha/wd && mocha --require ./setup-manual-config",
     "test-wd-per-test-client": "cd examples/mocha/wd && mocha --require ./setup-per-test-client",
+    "test-webdriverio": "npm run test-webdriverio-manual-config && npm run test-webdriverio-per-test-client",
+    "test-webdriverio-manual-config": "cd examples/mocha/webdriverio && mocha --require ./setup-manual-config",
+    "test-webdriverio-per-test-client": "cd examples/mocha/webdriverio && mocha --require ./setup-per-test-client",
     "install-selenium": "selenium-standalone install"
   }
 }
