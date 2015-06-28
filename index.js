@@ -71,15 +71,12 @@ rowdy.setupServer = function (callback) {
  * @param {Function} callback Callback `fn(err, client)` when started
  */
 rowdy.setupClient = function (callback) {
-  var client = clientWrapper.create(rowdy.config).client;
-  var caps = rowdy.setting.desiredCapabilities;
+  var client = clientWrapper.create(rowdy.config);
 
-  client
-    .init(caps)
-    .nodeify(function (err) {
-      if (err) { client.log("[error]".red, err.toString().trim()); }
-      callback(err, client);
-    });
+  client.init(null, function (err) {
+    if (err) { client.log("[error]".red, err.toString().trim()); }
+    callback(err, client);
+  })
 };
 
 /**
@@ -108,9 +105,7 @@ rowdy.teardownServer = function (server, callback) {
  * @param {Function} callback Callback `fn(err)` when stopped
  */
 rowdy.teardownClient = function (client, callback) {
-  client
-    .quit()
-    .nodeify(callback);
+  client.quit(callback);
 };
 
 /**

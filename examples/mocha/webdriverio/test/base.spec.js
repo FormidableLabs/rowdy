@@ -13,7 +13,7 @@ beforeEach(function (done) {
   // **Note**: Could move to `before` if "per suite" (not test) client.
   adapter.client
     // TODO .setImplicitWaitTimeout(ELEM_WAIT)
-    .nodeify(done);
+    .call(done);
 });
 
 afterEach(function (done) {
@@ -24,7 +24,7 @@ afterEach(function (done) {
   // See: http://stackoverflow.com/questions/21259235
   adapter.client
     // TODO .clearLocalStorage()
-    .nodeify(done);
+    .call(done);
 });
 
 adapter.afterEach();

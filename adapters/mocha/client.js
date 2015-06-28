@@ -27,9 +27,12 @@ var Client = module.exports = function () {
 inherits(Client, Base);
 
 Object.defineProperty(Client.prototype, "client", {
+  /**
+   * Return selenium client.
+   */
   get: function () {
     if (!this._client) { throw new Error("Client is unset"); }
-    return this._client;
+    return this._client.selClient
   }
 });
 
@@ -93,9 +96,7 @@ Client.prototype.after = function () {
       self._attempted === self._finished;
 
     if (self._client && self.config.setting.isSauceLabs) {
-      return self._client
-        .sauceJobStatus(passed)
-        .nodeify(done);
+      return self._client.updateSauceStatus(passed, done);
     }
 
     // Default.

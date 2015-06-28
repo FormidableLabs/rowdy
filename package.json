@@ -16,7 +16,8 @@
     "mocha": "^2.2.4",
     "phantomjs": "^1.9.16",
     "selenium-standalone": "^4.4.0",
-    "wd": "^0.3.11"
+    "wd": "^0.3.11",
+    "webdriverio": "^2.4.5"
   },
   "repository": {
     "type": "git",
