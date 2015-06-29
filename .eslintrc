@@ -137,7 +137,7 @@ rules:
     afterColon: true }]
   max-depth: [2, 4]
   max-len: [2, 80, 2]
-  max-nested-callbacks: [2, 3]
+  max-nested-callbacks: [2, 5]
   max-params: [2, 3]
   max-statements: [2, 10]
   new-cap: 2

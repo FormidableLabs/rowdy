@@ -17,90 +17,55 @@
  * certain tests), then review the code here and write your own setup/teardown!
  */
 /*globals before:false, afterEach:false, after:false */
-// State
-var _client = null;
-var _server = null;
-var attempted = 0;
-var finished = 0;
-var allPassed = true;
-
-var adapter = module.exports = {
-  before: function () {
-    var rowdy = require("../index");
-
-    // Setup server, then client.
-    before(function (done) {
-      // Check if actually using server.
-      if (!(rowdy.setting.server || {}).start) {
-        return done();
-      }
-
-      rowdy.setupServer(function (err, server) {
-        if (err) { return done(err); }
-        _server = server;
-        done();
-      });
-    });
-
-    before(function (done) {
-      rowdy.setupClient(function (err, client) {
-        if (err) { return done(err); }
-        _client = client;
-        done();
-      });
-    });
-  },
-
-  beforeEach: function () {
-    beforeEach(function () {
-      attempted++;
-    });
-  },
-
-  afterEach: function () {
-    afterEach(function () {
-      // Accumulate passed state to send to PAAS vendors (if relevant).
-      allPassed = allPassed && this.currentTest.state === "passed";
-      finished++;
-    });
-  },
-
-  after: function () {
-    var rowdy = require("../index");
-
-    // Handle SauceLabs accumulation.
-    after(function (done) {
-      if (_client && rowdy.setting.isSauceLabs) {
-        return _client
-          .sauceJobStatus(allPassed && attempted === finished)
-          .nodeify(done);
-      }
-
-      // Default.
-      done();
-    });
-
-    // Teardown client, then server.
-    after(function (done) {
-      if (!_client) { return done(); }
-      rowdy.teardownClient(_client, done);
-    });
-    after(function (done) {
-      if (!_server) { return done(); }
-      rowdy.teardownServer(_server, done);
-    });
-  }
-};
+var Base = require("./mocha/base");
+var Client = require("./mocha/client");
+var Server = require("./mocha/server");
+var inherits = require("util").inherits;
 
 /**
- * Return configured WD.js client.
+ * Mocha Adapter.
  *
- * **Note**: `adapter.before()` **must** be called before accessing this
- * property.
+ * @param {Object}  adapterCfg                Adapter configurations.
+ * @param {Boolean} adapterCfg.client.perTest New `client` per *each* test?
  */
-Object.defineProperty(adapter, "client", {
+var MochaAdapter = module.exports = function (adapterCfg) {
+  this._client = new Client(adapterCfg);
+  this._server = new Server(adapterCfg);
+};
+
+inherits(MochaAdapter, Base);
+
+Object.defineProperty(MochaAdapter.prototype, "client", {
   get: function () {
-    if (!_client) { throw new Error("Client is unset"); }
-    return _client;
+    return this._client.client;
   }
 });
+
+/**
+ * Teardown existing Selenium client and create new one.
+ *
+ * New client is available via `MochaAdapter.prototype.client`.
+ *
+ * @param {Function} callback Callback `fn(err)`
+ * @returns {void}
+ */
+MochaAdapter.prototype.refreshClient = function (callback) {
+  this._client.refreshClient(callback);
+};
+
+MochaAdapter.prototype.before = function () {
+  this._server.before();
+  this._client.before();
+};
+MochaAdapter.prototype.beforeEach = function () {
+  this._server.beforeEach();
+  this._client.beforeEach();
+};
+MochaAdapter.prototype.afterEach = function () {
+  this._client.afterEach();
+  this._server.afterEach();
+};
+MochaAdapter.prototype.after = function () {
+  this._client.after();
+  this._server.after();
+};

@@ -2,32 +2,63 @@ roWDy
 =====
 
 A small, rambuctious configuration wrapper for
-[WD.js](https://github.com/admc/wd).
+[WD.js](https://github.com/admc/wd) or
+[WebdriverIO](http://webdriver.io/)
 
 Main features:
 
-* Easy configuration for local, Sauce Labs, Browser Stack testing.
+* Easy configuration for local, Sauce Labs, BrowserStack testing.
 * Invokes selenium server for local runs automagically.
 * Integration helpers for Mocha tests.
+* Auto-magic setting of Sauce Labs test status.
 * Use your own test framework and test runner.
 
-## Basic Usage
+
+## Installation
 
 First, install the library.
 
 ```
-$ npm install rowdy
+$ npm install --save-dev rowdy
 ```
 
-For using local tests / development in this repo, download the local
-selenium drivers with:
+### Local Selenium Server
+
+If you want to have Rowdy run and control a local Selenium server, then
+install the standalone client and run the install scripts:
 
 ```
+$ npm install --save-dev selenium-standalone
 $ npm run install-selenium
 ```
 
 This shells out to `selenium-standalone` and is necessary at some point in your
 integration if using the standalone (local) server.
+
+The above steps are necessary if the configuration value
+`settings.local.server.start` is `true`. You can skip the steps if you are
+separately running / managing a local Selenium server or using a remote Selenium
+farm (e.g., Sauce Labs or BrowserStack).
+
+### Client Libraries
+
+Then, install the necessary client libraries.
+
+#### WD.js
+
+```
+$ npm install --save-dev wd
+```
+
+#### WebdriverIO
+
+```
+$ npm install --save-dev webdriverio saucelabs
+```
+
+_Note_: If using SauceLabs + WebdriverIO, we lazy `require` the Sauce Labs
+module to upload results of "done" to your SL account.
+
 
 ## Configuration
 
@@ -55,6 +86,7 @@ as appropriate and load:
 var config = require("./PATH/TO/config");
 var rowdy = require("rowdy")(config);
 ```
+
 
 ## Local Usage
 
@@ -88,19 +120,37 @@ VM, the only actually tweak needed was:
   `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BFCACHE`
   and add DWORD of `iexplore.exe` defaulted to `0` value.
 
+
 ## API
 
 **TODO**: API is still settling out.
 
-### Examples:
+### Mocha Adapter
 
-* [examples/mocha](./examples/mocha): Basic Mocha/Chai tests using WD promises
-  and the [Rowdy Mocha Adapter](./adapters/mocha.js)
+We provide full working examples of the [Mocha Adapter](./adapters/mocha.js):
 
-## WD Guide
+* [examples/mocha/wd](./examples/mocha/wd): Basic Mocha/Chai tests with WD.js
+* [examples/mocha/webdriverio](./examples/mocha/webdriverio): The same
+  Mocha/Chai tests with WebdriverIO.
+
+**TODO**: Add a full guide for configuring the adapter and (1) the options,
+(2) `adapter.refreshClient()` use, (3) `adapter.client` use.
+
+
+## Webdriver Client Guides
+
+### WD.js
 
 The full API to WD.js is available at:
 https://github.com/admc/wd/blob/master/doc/api.md
+
+### WebdriverIO
+
+WebdriverIO provides the following useful documentation:
+
+* http://webdriver.io/guide.html
+* http://webdriver.io/api.html
+
 
 ## Contributions
 
@@ -112,22 +162,22 @@ We test all changes with [Travis CI][trav]. Here's our current
 
 [![Build Status][trav_img]][trav_site]
 
-[trav]: https://travis-ci.org/
-[trav_img]: https://travis-ci.org/FormidableLabs/rowdy.svg
-[trav_site]: https://travis-ci.org/FormidableLabs/rowdy
-[trav_cfg]: ./.travis.yml
-
 We also do multi-browser testing thanks to donated VM time from
 [Sauce Labs][sauce] and [BrowserStack][bs].
 Here's our Sauce Labs [build matrix][sauce_site]:
 
 [![Sauce Test Status][sauce_img]][sauce_site]
 
+
+## Licenses
+All code not otherwise specified is Copyright Formidable Labs, Inc.
+Released under the [MIT](./LICENSE.txt) License.
+
+[trav]: https://travis-ci.org/
+[trav_img]: https://travis-ci.org/FormidableLabs/rowdy.svg
+[trav_site]: https://travis-ci.org/FormidableLabs/rowdy
+[trav_cfg]: ./.travis.yml
 [sauce]: https://saucelabs.com
 [sauce_img]: https://saucelabs.com/browser-matrix/rowdy.svg
 [sauce_site]: https://saucelabs.com/u/rowdy
 [bs]: http://www.browserstack.com/
-
-## Licenses
-All code not otherwise specified is Copyright 2014 Formidable Labs, Inc.
-Released under the [MIT](./LICENSE.txt) License.

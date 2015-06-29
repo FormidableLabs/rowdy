@@ -48,13 +48,16 @@ module.exports = {
    * Options can be globally overriden with a merge of a stringified JSON
    * object like:
    * ```
-   * ROWDY_OPTIONS='{ clientLogger: true }'
+   * ROWDY_OPTIONS='{ "clientLogger": true, "serverLogger": true }'
+   * ROWDY_OPTIONS='{ "driverLib": "wd" }'
+   * ROWDY_OPTIONS='{ "driverLib": "webdriverio" }'
    * ```
    */
   options: {
     clientLogger: false,
     serverLogger: false,
-    serverDebug: false
+    serverDebug: false,
+    driverLib: "wd" // "wd" or "webdriverio"
   },
 
   /**
@@ -128,10 +131,16 @@ module.exports = {
           build: BUILD
         },
         remote: {
-          hostname: "ondemand.saucelabs.com",
           port: 80,
           user: process.env.SAUCE_USERNAME,
-          pwd: process.env.SAUCE_ACCESS_KEY
+
+          // WD.js credentials.
+          hostname: "ondemand.saucelabs.com",
+          pwd: process.env.SAUCE_ACCESS_KEY,
+
+          // WebdriverIO credentials.
+          host: "ondemand.saucelabs.com",
+          key: process.env.SAUCE_ACCESS_KEY
         },
         // Custom indicator of vendor service.
         isSauceLabs: true
@@ -198,10 +207,16 @@ module.exports = {
           build: BUILD
         },
         remote: {
-          hostname: "hub.browserstack.com",
           port: 80,
           user: process.env.BROWSER_STACK_USERNAME,
-          pwd: process.env.BROWSER_STACK_ACCESS_KEY
+
+          // WD.js credentials.
+          hostname: "hub.browserstack.com",
+          pwd: process.env.BROWSER_STACK_ACCESS_KEY,
+
+          // WebdriverIO credentials.
+          host: "hub.browserstack.com",
+          key: process.env.BROWSER_STACK_ACCESS_KEY
         },
         // Custom indicator of vendor service.
         isBrowserStack: true
