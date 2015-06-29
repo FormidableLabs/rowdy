@@ -7,7 +7,7 @@ A small, rambuctious configuration wrapper for
 
 Main features:
 
-* Easy configuration for local, Sauce Labs, Browser Stack testing.
+* Easy configuration for local, Sauce Labs, BrowserStack testing.
 * Invokes selenium server for local runs automagically.
 * Integration helpers for Mocha tests.
 * Auto-magic setting of Sauce Labs test status.
@@ -22,27 +22,35 @@ First, install the library.
 $ npm install --save-dev rowdy
 ```
 
-For using local tests / development in this repo, download the local
-selenium drivers with:
+### Local Selenium Server
+
+If you want to have Rowdy run and control a local Selenium server, then
+install the standalone client and run the install scripts:
 
 ```
+$ npm install --save-dev selenium-standalone
 $ npm run install-selenium
 ```
 
 This shells out to `selenium-standalone` and is necessary at some point in your
 integration if using the standalone (local) server.
 
-Then, install the necessary client libraries. (_Note_: to make the underying
-webdriver client flexible, we've removed `peerDependencies` on wd or
-WebdriverIO, instead relying on user to manage).
+The above steps are necessary if the configuration value
+`settings.local.server.start` is `true`. You can skip the steps if you are
+separately running / managing a local Selenium server or using a remote Selenium
+farm (e.g., Sauce Labs or BrowserStack).
 
-**WD.js**:
+### Client Libraries
+
+Then, install the necessary client libraries.
+
+#### WD.js
 
 ```
 $ npm install --save-dev wd
 ```
 
-**WebdriverIO**:
+#### WebdriverIO
 
 ```
 $ npm install --save-dev webdriverio saucelabs
