@@ -1,6 +1,15 @@
 History
 =======
 
+## Current
+
+* **Breaking Changes**: Internal API has changed.
+* Make the Mocha adapter an instantiated instance.
+* Add `adapter.refreshClient()` for one-off new clients.
+* Add `client.perTest` adapter option for new client for each test.
+* Make `selenium-standalone` and optional dependency.
+* Add full WebdriverIO client implementation.
+
 ## 0.1.4
 
 * Make configuration lazy off example.
