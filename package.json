@@ -15,6 +15,7 @@
     "eslint": "^0.20.0",
     "mocha": "^2.2.4",
     "phantomjs": "^1.9.16",
+    "saucelabs": "^0.1.1",
     "selenium-standalone": "^4.4.0",
     "wd": "^0.3.11",
     "webdriverio": "^2.4.5"
