@@ -1,7 +1,7 @@
 History
 =======
 
-## Current
+## 0.2.0
 
 * **Breaking Changes**: Internal API has changed.
 * Make the Mocha adapter an instantiated instance.
