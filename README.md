@@ -1,7 +1,7 @@
 roWDy
 =====
 
-A small, rambuctious configuration wrapper for
+A small, rambunctious configuration wrapper for
 [WD.js](https://github.com/admc/wd) or
 [WebdriverIO](http://webdriver.io/)
 
