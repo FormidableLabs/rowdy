@@ -68,6 +68,8 @@ module.exports = {
    * and merge with specific fields.
    */
   settings: {
+    guacamoleEnabled: true,
+
     /**
      * Local Selenium: `desiredCapabilities.browserName`
      *
