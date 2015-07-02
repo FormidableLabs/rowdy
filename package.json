@@ -14,7 +14,7 @@
     "phantomjs": "^1.9.16",
     "saucelabs": "^0.1.1",
     "selenium-standalone": "^4.4.0",
-    "guacamole": "^1.0.8",
+    "guacamole": "^1.0.9",
     "wd": "^0.3.11",
     "webdriverio": "^2.4.5"
   },
