@@ -29,11 +29,11 @@ env:
     - ROWDY_SETTINGS="local.firefox"
     # Sauce Labs
     - ROWDY_SETTINGS="sauceLabs.safari_7_OS_X_10_9_Desktop"
-    - ROWDY_SETTINGS="sauceLabs.chrome_43_Windows_7_Desktop"
-    - ROWDY_SETTINGS="sauceLabs.firefox_38_Windows_7_Desktop"
-    - ROWDY_SETTINGS="sauceLabs.IE_9_Windows_7_Desktop"
-    - ROWDY_SETTINGS="sauceLabs.IE_10_Windows_7_Desktop"
-    - ROWDY_SETTINGS="sauceLabs.IE_11_Windows_7_Desktop"
+    - ROWDY_SETTINGS="sauceLabs.chrome_43_Windows_2012_R2_Desktop"
+    - ROWDY_SETTINGS="sauceLabs.firefox_38_Windows_2012_R2_Desktop"
+    - ROWDY_SETTINGS="sauceLabs.IE_9_Windows_2008_Desktop"
+    - ROWDY_SETTINGS="sauceLabs.IE_10_Windows_2012_Desktop"
+    - ROWDY_SETTINGS="sauceLabs.IE_11_Windows_2012_R2_Desktop"
     # BrowserStack
     - ROWDY_SETTINGS="browserStack.safari-mac"
     - ROWDY_SETTINGS="browserStack.chrome-win7"
