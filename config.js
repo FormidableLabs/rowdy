@@ -57,6 +57,7 @@ module.exports = {
     clientLogger: false,
     serverLogger: false,
     serverDebug: false,
+    guacamole: true, // Use https://github.com/testarmada/guacamole settings?
     driverLib: "wd" // "wd" or "webdriverio"
   },
 
@@ -68,8 +69,6 @@ module.exports = {
    * and merge with specific fields.
    */
   settings: {
-    guacamoleEnabled: true,
-
     /**
      * Local Selenium: `desiredCapabilities.browserName`
      *
