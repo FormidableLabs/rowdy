@@ -19,6 +19,9 @@
  * then import.
  *
  */
+
+var path = require("path");
+
 // Infer Phantom path off NPM module if available.
 var PHANTOM_PATH = false;
 try {
@@ -57,7 +60,10 @@ module.exports = {
     clientLogger: false,
     serverLogger: false,
     serverDebug: false,
-    guacamole: true, // Use https://github.com/testarmada/guacamole settings?
+    guacamole: {
+      enabled: true, // Use https://github.com/testarmada/guacamole settings?
+      shrinkwrap: path.join(__dirname, "guacamole-shrinkwrap.json")
+    },
     driverLib: "wd" // "wd" or "webdriverio"
   },
 
