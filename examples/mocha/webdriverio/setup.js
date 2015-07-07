@@ -1,6 +1,7 @@
 /**
  * Mocha setup.
  */
+var path = require("path");
 var chai = require("chai");
 var Adapter = require("../../../index").adapters.mocha;
 
@@ -14,6 +15,9 @@ var rowdy = require("../../../index");
 var config = require("../../../config");
 rowdy(_.extend({}, config, {
   options: {
-    driverLib: "webdriverio"
+    driverLib: "webdriverio",
+    guacamole: {
+      shrinkwrap: path.join(__dirname, "../../../guacamole-shrinkwrap.json")
+    }
   }
 }));
