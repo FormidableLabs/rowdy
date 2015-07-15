@@ -1,6 +1,11 @@
 History
 =======
 
+## Current
+* **Breaking Changes**: Configuration `options` structure has changed.
+* Use [`guacamole`](https://github.com/testarmada/guacamole) for Sauce Labs
+  environments. ([@Maciek416][])
+
 ## 0.2.0
 
 * **Breaking Changes**: Internal API has changed.
@@ -38,4 +43,5 @@ History
 
 * Initial releases.
 
+[@Maciek416]: https://github.com/Maciek416
 [@ryan-roemer]: https://github.com/ryan-roemer

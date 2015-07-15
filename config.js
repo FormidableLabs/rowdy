@@ -62,7 +62,9 @@ module.exports = {
     },
     server: {
       logger: false,
-      debug: false
+      debug: false,
+      startTimeout: 10 * 1000,  // Max wait for local server to start (ms).
+      stopTimeout: 10 * 1000    // Max wait for local server to stop (ms).
     },
     guacamole: {
       // Use https://github.com/testarmada/guacamole settings?
