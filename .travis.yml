@@ -21,7 +21,7 @@ env:
   # NOTE: **Cannot** have a space after `:` character in JSON string or else
   # YAML parser will fail to parse correctly.
   global:
-    - ROWDY_OPTIONS='{ "client":{ "logger":true }, "server":{ "logger":true, "startTimeout":20000 } }'
+    - ROWDY_OPTIONS='{ "client":{ "logger":true }, "server":{ "logger":true } }'
     - secure: RNc5J2RK3sBqx9UoQSORuqm57lmE3nGWsIyb3Yr9JG4PYcwBidFlZpT/pk5nvFNKfRjSe9hfXAeJRYRD8QqenG3YASDH278hdW+g1QyBJeorEZGwtDfqxtKfiif5yaULaYF7LjhAzIMlyqiz9NbbM7gwiwtlBkWRGenrwHJ2U9o=
     - secure: W5dyVnpoWwRIDkgkGza4VLnsghYGYdbP3U0sZY5Olp2Enx/AXijgYlmILbnef7lGV/lp3f0GT2JIYdiK0ESkrsgpltdu8YedAfB1Ld8vcQbt5KU/AQic1TQFwDKviVG3Wdqhyndd5kfP4tanGLjpeixdhYFAbApr7zjpCD1DTEE=
     - secure: ZFOUkBbo5MLheb/PeKevyj/4fTd4rBJFQebLxeFaCcRfK7iZfulRAG3Hi8r2VX0+eaV3iMy5e2oIui4Msrtxiu/U53R1TPm0K253qPghwRodMTdKqECgZnOqDBeytb/CgveOcxN3j4SgNQn6DnO32zH0tUcJbzhDdYBQT9fNz3s=
@@ -48,7 +48,5 @@ before_script:
 
 script:
   # Run the "check" script only once.
-  - date
   - 'if [ "$ROWDY_CHECK" ]; then npm run check; else true; fi'
   - '[ "$ROWDY_CHECK" ] || npm test'
-  - date
