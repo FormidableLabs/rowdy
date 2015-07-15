@@ -1,6 +1,10 @@
 language:
   - node_js
 
+# Container-based infrastructure.
+# http://docs.travis-ci.com/user/migrating-from-legacy
+sudo: false
+
 node_js:
   - 0.10
   - 0.12
