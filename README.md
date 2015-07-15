@@ -80,7 +80,7 @@ like override parts of the default configuration:
 ```js
 // Start with default configuration.
 var config = require("rowdy/config");
-config.serverLogger = true;
+config.server.logger = true;
 // ... any other mutations
 
 // Pass configuration in.

@@ -10,7 +10,7 @@
  *
  * ```js
  * var config = require("rowdy/config");
- * var config.clientLogger = true;
+ * var config.client.logger = true;
  * // OTHER MUTATIONS
  * var rowdy = require("rowdy")(config);
  * ```
@@ -51,15 +51,19 @@ module.exports = {
    * Options can be globally overriden with a merge of a stringified JSON
    * object like:
    * ```
-   * ROWDY_OPTIONS='{ "clientLogger": true, "serverLogger": true }'
+   * ROWDY_OPTIONS='{ "client":{ "logger":true }, "server":{ "logger":true } }'
    * ROWDY_OPTIONS='{ "driverLib": "wd" }'
    * ROWDY_OPTIONS='{ "driverLib": "webdriverio" }'
    * ```
    */
   options: {
-    clientLogger: false,
-    serverLogger: false,
-    serverDebug: false,
+    client: {
+      logger: false
+    },
+    server: {
+      logger: false,
+      debug: false
+    },
     guacamole: {
       // Use https://github.com/testarmada/guacamole settings?
       // Note: Implicitly disabled if `guacmole` is not installed.
