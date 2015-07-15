@@ -61,7 +61,9 @@ module.exports = {
     serverLogger: false,
     serverDebug: false,
     guacamole: {
-      enabled: true, // Use https://github.com/testarmada/guacamole settings?
+      // Use https://github.com/testarmada/guacamole settings?
+      // Note: Implicitly disabled if `guacmole` is not installed.
+      enabled: true,
       shrinkwrap: path.join(__dirname, "guacamole-shrinkwrap.json")
     },
     driverLib: "wd" // "wd" or "webdriverio"
