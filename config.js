@@ -10,7 +10,7 @@
  *
  * ```js
  * var config = require("rowdy/config");
- * var config.clientLogger = true;
+ * var config.client.logger = true;
  * // OTHER MUTATIONS
  * var rowdy = require("rowdy")(config);
  * ```
@@ -19,6 +19,9 @@
  * then import.
  *
  */
+
+var path = require("path");
+
 // Infer Phantom path off NPM module if available.
 var PHANTOM_PATH = false;
 try {
@@ -48,15 +51,27 @@ module.exports = {
    * Options can be globally overriden with a merge of a stringified JSON
    * object like:
    * ```
-   * ROWDY_OPTIONS='{ "clientLogger": true, "serverLogger": true }'
+   * ROWDY_OPTIONS='{ "client":{ "logger":true }, "server":{ "logger":true } }'
    * ROWDY_OPTIONS='{ "driverLib": "wd" }'
    * ROWDY_OPTIONS='{ "driverLib": "webdriverio" }'
    * ```
    */
   options: {
-    clientLogger: false,
-    serverLogger: false,
-    serverDebug: false,
+    client: {
+      logger: false
+    },
+    server: {
+      logger: false,
+      debug: false,
+      startTimeout: 10 * 1000,  // Max wait for local server to start (ms).
+      stopTimeout: 10 * 1000    // Max wait for local server to stop (ms).
+    },
+    guacamole: {
+      // Use https://github.com/testarmada/guacamole settings?
+      // Note: Implicitly disabled if `guacmole` is not installed.
+      enabled: true,
+      shrinkwrap: path.join(__dirname, "guacamole-shrinkwrap.json")
+    },
     driverLib: "wd" // "wd" or "webdriverio"
   },
 
@@ -144,53 +159,6 @@ module.exports = {
         },
         // Custom indicator of vendor service.
         isSauceLabs: true
-      },
-      "safari7-mac": {
-        desiredCapabilities: {
-          browserName: "safari",
-          platform: "OS X 10.9",
-          version: "7"
-        }
-      },
-      "chrome-win7": {
-        desiredCapabilities: {
-          browserName: "chrome",
-          platform: "Windows 7"
-        }
-      },
-      "firefox-win7": {
-        desiredCapabilities: {
-          browserName: "firefox",
-          platform: "Windows 7"
-        }
-      },
-      "ie8-winxp": {
-        desiredCapabilities: {
-          browserName: "internet explorer",
-          platform: "Windows XP",
-          version: "8"
-        }
-      },
-      "ie9-win7": {
-        desiredCapabilities: {
-          browserName: "internet explorer",
-          platform: "Windows 7",
-          version: "9"
-        }
-      },
-      "ie10-win7": {
-        desiredCapabilities: {
-          browserName: "internet explorer",
-          platform: "Windows 7",
-          version: "10"
-        }
-      },
-      "ie11-win8": {
-        desiredCapabilities: {
-          browserName: "internet explorer",
-          platform: "Windows 8.1",
-          version: "11"
-        }
       }
     },
 

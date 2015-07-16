@@ -59,6 +59,14 @@ $ npm install --save-dev webdriverio saucelabs
 _Note_: If using SauceLabs + WebdriverIO, we lazy `require` the Sauce Labs
 module to upload results of "done" to your SL account.
 
+#### Sauce Labs
+
+If you intend to use Sauce Labs +
+[guacamole](https://github.com/testarmada/guacamole)-provide environments, then:
+
+```
+$ npm install --save-dev guacamole
+```
 
 ## Configuration
 
@@ -72,7 +80,7 @@ like override parts of the default configuration:
 ```js
 // Start with default configuration.
 var config = require("rowdy/config");
-config.serverLogger = true;
+config.server.logger = true;
 // ... any other mutations
 
 // Pass configuration in.
@@ -87,6 +95,53 @@ var config = require("./PATH/TO/config");
 var rowdy = require("rowdy")(config);
 ```
 
+### Sauce Labs + Guacamole
+
+We use [guacamole](https://github.com/testarmada/guacamole) to have
+automatic access to all of the test environments Sauce Labs supports
+(e.g., `firefox_38_Windows_2012_R2_Desktop`, `safari_7_OS_X_10_9_Desktop`).
+
+If you `npm install guacamole`, then by default Rowdy will use and enable
+those environments for use in configuration. Once installed, you can view
+all of the available environments with:
+
+```
+$ node_modules/.bin/guacamole
+```
+
+Rowdy uses a cached version of Sauce Labs configurations in the
+[`guacamole-shrinkwrap.json`](guacamole-shrinkwrap.json) file so that
+`guacamole` doesn't query the Sauce Labs API at runtime.
+
+**Disabling Guacamole**: If you _don't_ want to use the `guacamole` environments
+with Sauce Labs, then you can skip the `npm install` and just make sure the
+following is active in your Rowdy configuration:
+
+```js
+{
+  options: {
+    guacamole: {
+      enabled: false
+    }
+  }
+}
+```
+
+(By default `guacamole.enabled` is true if `npm` installed and false otherwise,
+so if you use the default Rowdy configuration, no code changes are needed.)
+
+And then you should add your own bespoke Sauce Labs settings in configuration
+at:
+
+```js
+{
+  settings: {
+    sauceLabs: {
+      "mac-safari-7": { /* Sauce Labs capabilities */ }
+    }
+  }
+}
+```
 
 ## Local Usage
 
