@@ -118,8 +118,6 @@ $ ROWDY_OPTIONS='{ "client": { "port":4321 }, "server": { "start":false } }' \
   npm run test
 ```
 
-
-
 ### Sauce Labs + Guacamole
 
 We use [guacamole](https://github.com/testarmada/guacamole) to have
