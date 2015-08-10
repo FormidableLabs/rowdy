@@ -95,6 +95,31 @@ var config = require("./PATH/TO/config");
 var rowdy = require("rowdy")(config);
 ```
 
+### Local Examples
+
+Start the local Selenium server on a different port:
+
+```
+$ ROWDY_OPTIONS='{ "server": { "port":4321 } }' \
+  npm run test
+```
+
+Have client hit an already running local Selenium server without starting its
+own:
+
+```
+# In one terminal
+$  java -jar node_modules/selenium-standalone/.selenium/selenium-server/2.45.0-server.jar \
+   -port 4321 \
+   -Dphantomjs.binary.path=node_modules/phantomjs/lib/phantom/bin/phantomjs
+
+# In another...
+$ ROWDY_OPTIONS='{ "client": { "port":4321 }, "server": { "start":false } }' \
+  npm run test
+```
+
+
+
 ### Sauce Labs + Guacamole
 
 We use [guacamole](https://github.com/testarmada/guacamole) to have
