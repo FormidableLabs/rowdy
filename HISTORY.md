@@ -1,7 +1,7 @@
 History
 =======
 
-## Current
+## 0.3.1
 * Add configurable server/client `port` option.
 
 ## 0.3.0
