@@ -49,4 +49,8 @@ before_script:
 script:
   # Run the "check" script only once.
   - 'if [ "$ROWDY_CHECK" ]; then npm run check; else true; fi'
+  # Try a different port!
+  - 'if [ "$ROWDY_CHECK" ]; then ROWDY_OPTIONS="{ \"client\":{ \"logger\":true }, \"server\":{ \"logger\":true,\"port\":4321 } }" npm run test; else true; fi'
+
+  # Different matrix of settings
   - '[ "$ROWDY_CHECK" ] || npm test'

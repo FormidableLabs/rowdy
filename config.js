@@ -58,13 +58,20 @@ module.exports = {
    */
   options: {
     client: {
-      logger: false
+      logger: false,
+      port: null                // Selenium port to hit.
     },
     server: {
       logger: false,
       debug: false,
+      port: null,               // Selenium port to start on.
       startTimeout: 10 * 1000,  // Max wait for local server to start (ms).
       stopTimeout: 10 * 1000    // Max wait for local server to stop (ms).
+
+      // Implied Overrides
+      // -----------------
+      // start: true,
+      // phantomPath: PHANTOM_PATH
     },
     guacamole: {
       // Use https://github.com/testarmada/guacamole settings?
@@ -100,6 +107,7 @@ module.exports = {
         desiredCapabilities: {
           browserName: "phantomjs"
         },
+        // These options _can_ be overriden from environment options.
         server: {
           start: true,
           phantomPath: PHANTOM_PATH

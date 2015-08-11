@@ -1,6 +1,9 @@
 History
 =======
 
+## Current
+* Add configurable server/client `port` option.
+
 ## 0.3.0
 * **Breaking Changes**: Configuration `options` structure has changed.
 * Use [`guacamole`](https://github.com/testarmada/guacamole) for Sauce Labs
