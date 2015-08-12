@@ -19,9 +19,7 @@ var Client = module.exports = function () {
   this._client = null;
 
   // Test state.
-  this._attempted = 0;
-  this._passed = 0;
-  this._finished = 0;
+  this._failed = 0;
 };
 
 inherits(Client, Base);
@@ -49,12 +47,35 @@ Client.prototype._setupClient = function (callback) {
   });
 };
 
+/**
+ * Tear down the underlying client.
+ *
+ * **Note**: Also flushes current SauceLabs status, which is a running
+ * accumulationg of "all tests have passed at this point" so that we can handle
+ * different SL client correctly updating results.
+ *
+ * @param {Function}  callback  Callback `fn(err)`
+ * @returns {void}
+ * @api private
+ */
 Client.prototype._teardownClient = function (callback) {
   var rowdy = require("../../index");
+  var self = this;
 
-  if (!this._client) { return callback(); }
+  if (!self._client) { return callback(); }
 
-  rowdy.teardownClient(this._client, callback);
+  if (self.config.setting.isSauceLabs) {
+    var passed = self._failed === 0;
+
+    // Call SL first, then teardown.
+    return self._client.updateSauceStatus(passed, function (err) {
+      if (err) { return callback(err); }
+      rowdy.teardownClient(self._client, callback);
+    });
+  }
+
+  // Straight teardown.
+  rowdy.teardownClient(self._client, callback);
 };
 
 Client.prototype.refreshClient = function (callback) {
@@ -77,8 +98,6 @@ Client.prototype.beforeEach = function () {
   var self = this;
 
   beforeEach(function (done) {
-    self._attempted++;
-
     if (self._perTest) { return self._setupClient(done); }
     done();
   });
@@ -88,8 +107,7 @@ Client.prototype.afterEach = function () {
   var self = this;
 
   afterEach(function (done) {
-    self._passed += this.currentTest.state === "passed" ? 1 : 0;
-    self._finished++;
+    self._failed += this.currentTest.state === "passed" ? 0 : 1;
 
     if (self._perTest) { return self._teardownClient(done); }
     done();
@@ -98,19 +116,6 @@ Client.prototype.afterEach = function () {
 
 Client.prototype.after = function () {
   var self = this;
-
-  // Handle SauceLabs accumulation.
-  after(function (done) {
-    var passed = self._attempted === self._passed &&
-      self._attempted === self._finished;
-
-    if (self._client && self.config.setting.isSauceLabs) {
-      return self._client.updateSauceStatus(passed, done);
-    }
-
-    // Default.
-    done();
-  });
 
   after(function (done) {
     if (self._perSuite) { return self._teardownClient(done); }
