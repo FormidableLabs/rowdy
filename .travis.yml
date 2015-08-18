@@ -39,8 +39,12 @@ env:
     - ROWDY_SETTINGS="sauceLabs.IE_10_Windows_2012_Desktop"
     - ROWDY_SETTINGS="sauceLabs.IE_11_Windows_2012_R2_Desktop"
     # BrowserStack
-    - ROWDY_SETTINGS="browserStack.safari-mac"
-    - ROWDY_SETTINGS="browserStack.chrome-win7"
+    #
+    # Disable BS until "The environment you requested was unavailable." errors
+    # are figured out and/or subside.
+    # https://github.com/FormidableLabs/rowdy/issues/34
+    #- ROWDY_SETTINGS="browserStack.safari-mac"
+    #- ROWDY_SETTINGS="browserStack.chrome-win7"
 
 before_script:
   # Download selenium drivers.
