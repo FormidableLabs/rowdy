@@ -1,6 +1,14 @@
 History
 =======
 
+## 0.3.3
+* Fix client logging options.
+
+## 0.3.2
+* Disable BrowserStack in CI.
+* Upload Sauce Labs status on any client teardown.
+* Support Sauce Labs connect tunnel identifiers.
+
 ## 0.3.1
 * Add configurable server/client `port` option.
 
