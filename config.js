@@ -38,11 +38,13 @@ var BUILD = process.env.TRAVIS_BUILD_NUMBER ?
 // Sauce
 var SAUCE_BRANCH = process.env.TRAVIS_BRANCH || "local";
 var SAUCE_TAG = process.env.SAUCE_USERNAME + "@" + SAUCE_BRANCH;
+var SAUCE_NAME = process.env.SAUCE_USERNAME;
 
 // Browser Stack
 var BROWSER_STACK_BRANCH = process.env.TRAVIS_BRANCH || "local";
 var BROWSER_STACK_TAG = process.env.BROWSER_STACK_USERNAME + "@" +
   BROWSER_STACK_BRANCH;
+var BROWSER_STACK_NAME = process.env.BROWSER_STACK_USERNAME;
 
 module.exports = {
   /**
@@ -148,7 +150,7 @@ module.exports = {
     sauceLabs: {
       default: {
         desiredCapabilities: {
-          name: "Rowdy Tests",
+          name: SAUCE_NAME,
           tags: [SAUCE_TAG],
           public: "public",
           build: BUILD
@@ -179,7 +181,7 @@ module.exports = {
       default: {
         desiredCapabilities: {
           name: BROWSER_STACK_TAG,
-          project: "Rowdy Tests",
+          project: BROWSER_STACK_NAME,
           build: BUILD
         },
         remote: {
