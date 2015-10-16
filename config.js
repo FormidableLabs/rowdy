@@ -67,6 +67,7 @@ module.exports = {
       logger: false,
       debug: false,
       port: null,               // Selenium port to start on.
+      useExisting: false,       // Use existing Selenium server?
       startTimeout: 10 * 1000,  // Max wait for local server to start (ms).
       stopTimeout: 10 * 1000    // Max wait for local server to stop (ms).
 
