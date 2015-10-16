@@ -1,6 +1,9 @@
 History
 =======
 
+## 0.3.4
+* Add `server.useExisting` option.
+
 ## 0.3.3
 * Fix client logging options.
 
