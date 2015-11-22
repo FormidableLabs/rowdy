@@ -1,6 +1,7 @@
 /**
  * Example tests.
  */
+var promiseDone = require("../../../../index").helpers.webdriverio.promiseDone;
 var adapter = global.adapter;
 
 describe("notes - webdriverio", function () {
@@ -21,7 +22,7 @@ describe("notes - webdriverio", function () {
       .click(".notes-item .note-delete")
       .waitForExist(".notes-item .note-delete", false)
 
-      .call(done);
+      .finally(promiseDone(done));
   });
 
   it("adds a note and edits it", function (done) {
@@ -49,7 +50,7 @@ describe("notes - webdriverio", function () {
         expect(val).to.equal("Edit Test");
       })
 
-      .call(done);
+      .finally(promiseDone(done));
   });
 
   /*
@@ -73,7 +74,7 @@ describe("notes - webdriverio", function () {
           expect(text).to.equal("Notes");
         })
 
-        .call(done);
+        .finally(promiseDone(done));
     });
   });
 });

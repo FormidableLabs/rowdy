@@ -1,6 +1,7 @@
 /**
  * Global setup / teardown.
  */
+var promiseDone = require("../../../../index").helpers.webdriverio.promiseDone;
 var adapter = global.adapter;
 
 // Global wait.
@@ -23,7 +24,7 @@ beforeEach(function (done) {
       if (window.localStorage) { window.localStorage.clear(); }
     })
 
-    .call(done);
+    .finally(promiseDone(done));
 });
 
 adapter.afterEach();
