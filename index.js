@@ -119,6 +119,7 @@ rowdy.adapters = {
  * Helpers.
  */
 rowdy.helpers = {
-  js: require("./helpers/js")
+  js: require("./helpers/js"),
+  webdriverio: require("./helpers/webdriverio")
 };
 
