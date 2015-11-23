@@ -1,6 +1,9 @@
 History
 =======
 
+## 0.3.5
+* Add `helpers.webdriverio` with initial promise helper.
+
 ## 0.3.4
 * Add `server.useExisting` option.
 
