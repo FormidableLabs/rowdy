@@ -1,3 +1,6 @@
+"use strict";
+/*globals before:false, after:false*/
+
 var Base = require("./base");
 var inherits = require("util").inherits;
 
@@ -5,6 +8,7 @@ var inherits = require("util").inherits;
  * Server adapter.
  *
  * @param {Object} adapterCfg   Specific configurations for adapter.
+ * @returns {void}
  */
 var Server = module.exports = function () {
   Base.apply(this, arguments);
@@ -14,7 +18,7 @@ var Server = module.exports = function () {
 inherits(Server, Base);
 
 Server.prototype.before = function () {
-  var rowdy = require("../../index");
+  var rowdy = require("../../index"); // eslint-disable-line global-require
   var self = this;
 
   before(function (done) {
@@ -32,7 +36,7 @@ Server.prototype.before = function () {
 };
 
 Server.prototype.after = function () {
-  var rowdy = require("../../index");
+  var rowdy = require("../../index"); // eslint-disable-line global-require
   var self = this;
 
   after(function (done) {

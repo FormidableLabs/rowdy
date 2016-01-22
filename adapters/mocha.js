@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Adapter: Mocha.
  *
@@ -16,7 +18,6 @@
  * If this doesn't exactly fit your scenario (e.g., want a new client for
  * certain tests), then review the code here and write your own setup/teardown!
  */
-/*globals before:false, afterEach:false, after:false */
 var Base = require("./mocha/base");
 var Client = require("./mocha/client");
 var Server = require("./mocha/server");
@@ -27,6 +28,7 @@ var inherits = require("util").inherits;
  *
  * @param {Object}  adapterCfg                Adapter configurations.
  * @param {Boolean} adapterCfg.client.perTest New `client` per *each* test?
+ * @returns {void}
  */
 var MochaAdapter = module.exports = function (adapterCfg) {
   this._client = new Client(adapterCfg);

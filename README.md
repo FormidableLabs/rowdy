@@ -129,7 +129,11 @@ those environments for use in configuration. Once installed, you can view
 all of the available environments with:
 
 ```
+# View environments
 $ node_modules/.bin/guacamole
+
+# Generate a cached shrinkwrap file
+$ node_modules/.bin/guacamole --generate-shrinkwrap
 ```
 
 Rowdy uses a cached version of Sauce Labs configurations in the

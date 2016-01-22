@@ -1,7 +1,10 @@
+"use strict";
+
 /**
  * Base (noop) adapter.
  *
  * @param {Object} adapterCfg   Specific configurations for adapter.
+ * @returns {void}
  */
 var Base = module.exports = function (adapterCfg) {
   // Adapter configuration.
@@ -10,6 +13,7 @@ var Base = module.exports = function (adapterCfg) {
   // Proxy the (lazy) rowdy configuration.
   Object.defineProperty(this, "config", {
     get: function () {
+      /*eslint-disable global-require*/
       return require("../../index").config;
     }
   });
