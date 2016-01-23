@@ -9,15 +9,17 @@
     "portscanner": "^1.0.0"
   },
   "devDependencies": {
-    "chai": "^2.3.0",
-    "eslint": "^0.20.0",
+    "chai": "^3.4.1",
+    "eslint": "^1.10.3",
+    "eslint-config-defaults": "^8.0.2",
+    "eslint-plugin-filenames": "^0.2.0",
+    "guacamole": "^1.1.2",
     "mocha": "^2.2.4",
     "phantomjs": "^1.9.16",
     "saucelabs": "^0.1.1",
-    "selenium-standalone": "^4.4.0",
-    "guacamole": "^1.1.2",
+    "selenium-standalone": "4.7.2",
     "wd": "^0.3.11",
-    "webdriverio": "^2.4.5"
+    "webdriverio": "^3.4.0"
   },
   "repository": {
     "type": "git",
@@ -39,7 +41,9 @@
     "url": "https://github.com/FormidableLabs/rowdy/issues"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint-server": "eslint -c .eslintrc-server adapters helpers lib *.js examples/*/*/*.js",
+    "lint-server-test": "eslint -c .eslintrc-server-test examples/*/*/test",
+    "lint": "npm run lint-server && npm run lint-server-test",
     "check": "npm run lint",
     "check-all": "npm run lint && npm run test",
     "test": "npm run test-wd && npm run test-webdriverio",

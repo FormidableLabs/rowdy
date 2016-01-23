@@ -1,3 +1,6 @@
+"use strict";
+/*globals before:false, beforeEach:false, afterEach:false, after:false*/
+
 var Base = require("./base");
 var inherits = require("util").inherits;
 
@@ -6,6 +9,7 @@ var inherits = require("util").inherits;
  *
  * @param {Object}  adapterCfg          Specific configurations for adapter.
  * @param {Boolean} adapterCfg.perTest  New `client` per *each* test? (`false`)
+ * @returns {void}
  */
 var Client = module.exports = function () {
   Base.apply(this, arguments);
@@ -37,7 +41,7 @@ Object.defineProperty(Client.prototype, "client", {
 });
 
 Client.prototype._setupClient = function (callback) {
-  var rowdy = require("../../index");
+  var rowdy = require("../../index"); // eslint-disable-line global-require
   var self = this;
 
   rowdy.setupClient(function (err, client) {
@@ -59,7 +63,7 @@ Client.prototype._setupClient = function (callback) {
  * @api private
  */
 Client.prototype._teardownClient = function (callback) {
-  var rowdy = require("../../index");
+  var rowdy = require("../../index"); // eslint-disable-line global-require
   var self = this;
 
   if (!self._client) { return callback(); }
@@ -80,6 +84,7 @@ Client.prototype._teardownClient = function (callback) {
 
 Client.prototype.refreshClient = function (callback) {
   this._teardownClient(function (err) {
+    /*eslint-disable no-invalid-this*/
     if (err) { return callback(err); }
     this._setupClient(callback);
   }.bind(this));

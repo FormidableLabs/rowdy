@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Additional configuration -- explicit Rowdy configuration.
  */

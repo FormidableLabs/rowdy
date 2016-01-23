@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * A base configuration.
  *
@@ -25,7 +27,7 @@ var path = require("path");
 // Infer Phantom path off NPM module if available.
 var PHANTOM_PATH = false;
 try {
-  PHANTOM_PATH = require("phantomjs").path;
+  PHANTOM_PATH = require("phantomjs").path; // eslint-disable-line global-require
 } catch (err) {
   // Leave false.
 }
@@ -45,6 +47,9 @@ var BROWSER_STACK_BRANCH = process.env.TRAVIS_BRANCH || "local";
 var BROWSER_STACK_TAG = process.env.BROWSER_STACK_USERNAME + "@" +
   BROWSER_STACK_BRANCH;
 var BROWSER_STACK_NAME = process.env.BROWSER_STACK_USERNAME;
+
+// Default start/stop timeout value.
+var TIMEOUT = 10 * 1000; // eslint-disable-line no-magic-numbers
 
 module.exports = {
   /**
@@ -68,8 +73,8 @@ module.exports = {
       debug: false,
       port: null,               // Selenium port to start on.
       useExisting: false,       // Use existing Selenium server?
-      startTimeout: 10 * 1000,  // Max wait for local server to start (ms).
-      stopTimeout: 10 * 1000    // Max wait for local server to stop (ms).
+      startTimeout: TIMEOUT,    // Max wait for local server to start (ms).
+      stopTimeout: TIMEOUT      // Max wait for local server to stop (ms).
 
       // Implied Overrides
       // -----------------

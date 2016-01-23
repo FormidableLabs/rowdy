@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Rowdy.
  */
@@ -22,7 +24,7 @@ Object.defineProperty(rowdy, "config", {
   get: function () {
     // Lazy initialization.
     if (!_config) {
-      rowdy(require("./config"));
+      rowdy(require("./config")); // eslint-disable-line global-require
     }
 
     return _config;
@@ -69,6 +71,7 @@ rowdy.setupServer = function (callback) {
  * Set up a new WD client and other state.
  *
  * @param {Function} callback Callback `fn(err, client)` when started
+ * @returns {void}
  */
 rowdy.setupClient = function (callback) {
   var client = clientWrapper.create(rowdy.config);
@@ -103,6 +106,7 @@ rowdy.teardownServer = function (server, callback) {
  *
  * @param {Object} client Client object
  * @param {Function} callback Callback `fn(err)` when stopped
+ * @returns {void}
  */
 rowdy.teardownClient = function (client, callback) {
   client.quit(callback);
@@ -112,14 +116,16 @@ rowdy.teardownClient = function (client, callback) {
  * Adapters.
  */
 rowdy.adapters = {
-  mocha: require("./adapters/mocha")
+  mocha: require("./adapters/mocha") // eslint-disable-line global-require
 };
 
 /**
  * Helpers.
  */
 rowdy.helpers = {
+  /*eslint-disable global-require*/
   js: require("./helpers/js"),
   webdriverio: require("./helpers/webdriverio")
+  /*eslint-enable global-require*/
 };
 

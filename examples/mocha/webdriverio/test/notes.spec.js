@@ -1,12 +1,17 @@
+"use strict";
+
 /**
  * Example tests.
  */
 var promiseDone = require("../../../../index").helpers.webdriverio.promiseDone;
 var adapter = global.adapter;
 
+
 describe("notes - webdriverio", function () {
 
   it("adds a note and deletes it", function (done) {
+    var DELETE_WAIT = 2000;
+
     adapter.client
       .url("http://backbone-testing.com/notes/app/")
 
@@ -20,7 +25,7 @@ describe("notes - webdriverio", function () {
 
       // Delete a note
       .click(".notes-item .note-delete")
-      .waitForExist(".notes-item .note-delete", false)
+      .waitForExist(".notes-item .note-delete", DELETE_WAIT, true)
 
       .finally(promiseDone(done));
   });
