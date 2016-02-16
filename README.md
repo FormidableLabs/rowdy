@@ -59,6 +59,8 @@ $ npm install --save-dev webdriverio saucelabs
 _Note_: If using SauceLabs + WebdriverIO, we lazy `require` the Sauce Labs
 module to upload results of "done" to your SL account.
 
+_Note_: Rowdy requires `webdriverio` at version `v3.0.0` or above.
+
 #### Sauce Labs
 
 If you intend to use Sauce Labs +
