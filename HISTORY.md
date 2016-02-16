@@ -1,6 +1,10 @@
 History
 =======
 
+## 0.4.0
+* **Breaking Change**: Update client webdriver teardown to use `.end()` call
+  from `v3.0.0`-on. Installs below `webdriver@3.0.0.` will break.
+
 ## 0.3.6
 * Add `tree-kill` to more emphatically SIGKILL the selenium server process
   on teardown.
