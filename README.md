@@ -251,10 +251,6 @@ Here's our Sauce Labs [build matrix][sauce_site]:
 [![Sauce Test Status][sauce_img]][sauce_site]
 
 
-## Licenses
-All code not otherwise specified is Copyright Formidable Labs, Inc.
-Released under the [MIT](./LICENSE.txt) License.
-
 [trav]: https://travis-ci.org/
 [trav_img]: https://travis-ci.org/FormidableLabs/rowdy.svg
 [trav_site]: https://travis-ci.org/FormidableLabs/rowdy

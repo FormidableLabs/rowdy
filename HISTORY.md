@@ -1,6 +1,10 @@
 History
 =======
 
+## 0.3.6
+* Add `tree-kill` to more emphatically SIGKILL the selenium server process
+  on teardown.
+
 ## 0.3.5
 * Add `helpers.webdriverio` with initial promise helper.
 

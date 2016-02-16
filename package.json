@@ -1,6 +1,6 @@
 {
   "name": "rowdy",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "WD.js / WebdriverIO configuration wrapper.",
   "main": "index.js",
   "dependencies": {
