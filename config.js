@@ -27,7 +27,7 @@ var path = require("path");
 // Infer Phantom path off NPM module if available.
 var PHANTOM_PATH = false;
 try {
-  PHANTOM_PATH = require("phantomjs").path; // eslint-disable-line global-require
+  PHANTOM_PATH = require("phantomjs-prebuilt").path; // eslint-disable-line global-require
 } catch (err) {
   // Leave false.
 }
