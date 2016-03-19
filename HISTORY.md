@@ -1,7 +1,7 @@
 History
 =======
 
-## Current
+## 0.5.0
 
 * Update to modern `phantom-prebuilt` with fallback to `phantom`.
   ([@kriuz][])
