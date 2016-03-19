@@ -1,6 +1,11 @@
 History
 =======
 
+## Current
+
+* Update to modern `phantom-prebuilt` with fallback to `phantom`.
+  ([@kriuz][])
+
 ## 0.4.0
 * **Breaking Change**: Update client webdriver teardown to use `.end()` call
   from `v3.0.0`-on. Installs below `webdriver@3.0.0.` will break.
@@ -68,5 +73,6 @@ History
 
 * Initial releases.
 
+[@kriuz]: https://github.com/kriuz
 [@Maciek416]: https://github.com/Maciek416
 [@ryan-roemer]: https://github.com/ryan-roemer

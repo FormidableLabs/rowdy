@@ -27,10 +27,13 @@ var path = require("path");
 // Infer Phantom path off NPM module if available.
 var PHANTOM_PATH = false;
 try {
+  // Attempt modern phantom first.
   PHANTOM_PATH = require("phantomjs-prebuilt").path; // eslint-disable-line global-require
-} catch (err) {
-  // Leave false.
-}
+} catch (err) { /* Swallow */ }
+try {
+  // Fallback to pre-2 phantom.
+  PHANTOM_PATH = PHANTOM_PATH || require("phantomjs").path; // eslint-disable-line global-require
+} catch (err) { /* Swallow */ }
 
 // Travis
 var BUILD = process.env.TRAVIS_BUILD_NUMBER ?
