@@ -1,3 +1,5 @@
+[![Maintenance Status][maintenance-image]](#maintenance-status)
+
 roWDy
 =====
 
@@ -253,6 +255,11 @@ Here's our Sauce Labs [build matrix][sauce_site]:
 [![Sauce Test Status][sauce_img]][sauce_site]
 
 
+## Maintenance Status
+
+**Stable:** Formidable is not planning to develop any new features for this project. We are still responding to bug reports and security concerns. We are still welcoming PRs for this project, but PRs that include new features should be small and easy to integrate and should not include breaking changes.
+
+[maintenance-image]: https://img.shields.io/badge/maintenance-stable-blue.svg
 [trav]: https://travis-ci.org/
 [trav_img]: https://travis-ci.org/FormidableLabs/rowdy.svg
 [trav_site]: https://travis-ci.org/FormidableLabs/rowdy
