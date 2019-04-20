@@ -42,12 +42,8 @@ env:
     # Disable flaky test: https://github.com/FormidableLabs/rowdy/issues/32
     #- ROWDY_SETTINGS="sauceLabs.safari_7_OS_X_10_9_Desktop"
     # BrowserStack
-    #
-    # Disable BS until "The environment you requested was unavailable." errors
-    # are figured out and/or subside.
-    # https://github.com/FormidableLabs/rowdy/issues/34
-    #- ROWDY_SETTINGS="browserStack.safari-mac"
-    #- ROWDY_SETTINGS="browserStack.chrome-win7"
+    - ROWDY_SETTINGS="browserStack.safari-mac"
+    - ROWDY_SETTINGS="browserStack.chrome-win7"
 
 before_script:
   # Download selenium drivers.
